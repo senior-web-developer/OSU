@@ -72,8 +72,8 @@
         </li>                  
         </ul>          
         <%end%>
-       
-        <%= form_for @order, :url =>{:action => "update", :id =>@order} do |f| %>
+
+        <%= form_for order, :url =>{:action => "update", :id => order} do |f| %>
           <%= f.text_field 'id', :class => 'form-control'  %>
           <%= f.text_field 'tags', :class => 'form-control'  %>
           <%= f.submit "Save changes", :class => 'btn btn-primary'%>         
