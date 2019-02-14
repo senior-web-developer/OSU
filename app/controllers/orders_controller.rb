@@ -46,8 +46,8 @@ class OrdersController < ShopifyApp::AuthenticatedController
   # PATCH/PUT /orders/1.json
   def update
     @order = ShopifyAPI::Order.find(params[:id])
-    @order.tags = params[:tags]    
-    @order.update(order_params)        
+    @order.tags = "Post Method Testing.."   
+    @order.save        
   end
 
   # DELETE /orders/1
