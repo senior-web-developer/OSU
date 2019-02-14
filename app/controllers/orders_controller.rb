@@ -45,17 +45,8 @@ class OrdersController < ShopifyApp::AuthenticatedController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
-    @book = Book.find(params[:id])
-    
-    respond_to do |format|
-      if @order.save(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-        format.json { render :show, status: :ok, location: @order }
-      else
-        format.html { render :edit }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
-    end
+    @order = order.find(params[:id])    
+    @order.save(order_params)        
   end
 
   # DELETE /orders/1
