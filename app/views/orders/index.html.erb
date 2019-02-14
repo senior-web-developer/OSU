@@ -73,16 +73,15 @@
         </ul>          
         <%end%>
        
-        <%= form_for @order, :html => { :class => "form-horizontal order" } do |f| %>
-          <%= f.text_field :order.id, :class => 'form-control' %>
-          <%= f.text_field :tags, :class => 'form-control' %>
-          <%= f.submit, :class => 'btn btn-primary' %>
-          <%= link_to t('.cancel', :default => t("helpers.links.cancel")), orders_path, :class => 'btn btn-default' %>
-        <% end %>
+        <%= form_for @order, :url =>{:action => "update", :id =>@order} do |f| %>
+          <%= f.text_field 'id', :class => 'form-control'  %>
+          <%= f.text_field 'tags', :class => 'form-control'  %>
+          <%= f.submit "Save changes", :class => 'btn btn-primary'%>         
+        <%end%>
         
         </td>                             
       </tr>
-    <% end %>
+    <%end%>
   </tbody>
 </table>
 </div>
