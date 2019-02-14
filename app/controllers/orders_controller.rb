@@ -29,7 +29,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
   # POST /orders
   # POST /orders.json
   def create
-    @order = ShopifyAPI::Order.new(order_params)
+    @order = ShopifyAPI::Order.save(order_params)
 
     respond_to do |format|
       if @order.save
@@ -45,8 +45,10 @@ class OrdersController < ShopifyApp::AuthenticatedController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
+    @book = Book.find(params[:id])
+    
     respond_to do |format|
-      if @order.update(order_params)
+      if @order.save(order_params)
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
         format.json { render :show, status: :ok, location: @order }
       else
@@ -74,6 +76,6 @@ class OrdersController < ShopifyApp::AuthenticatedController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:name, :email, :first_name, :last_name, :shopify_order_id, :order_date, :total, :line_item_count, :financial_status)
+      params.require(:order).permit(:tags)
     end
 end

@@ -72,12 +72,14 @@
         </li>                  
         </ul>          
         <%end%>
-        <form action='/orders/update' method='post' class="text-right">
-          <input type="hidden" name="_method" value="put" />
-          <input type="hidden" id="order_id" value="<%= order.id%>" />
-          <input type="hidden" name="tags" value="Post method testing.." />
-          <input type="submit" class="btn btn-warning status_submit" value="Save">
-        </form>        
+        <%= form_for @order, :html => { :class => "form-horizontal order" } do |f| %>
+          <%= f.text_field :order.id, :class => 'form-control' %>
+          <%= f.text_field :tags, :class => 'form-control' %>
+          <%= f.submit nil, :class => 'btn btn-primary' %>
+          <%= link_to t('.cancel', :default => t("helpers.links.cancel")), orders_path, :class => 'btn btn-default' %>
+        <% end %>
+
+                
         </td>                             
       </tr>
     <% end %>
