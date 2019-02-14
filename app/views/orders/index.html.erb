@@ -1,104 +1,121 @@
-  <% content_for :javascript do %>
-    <script type="text/javascript">
-      ShopifyApp.ready(function(){
-        ShopifyApp.Bar.initialize({ title: "Orders" });
-      });
-    </script>
-  <% end %>
-  
-<div class='col-lg-12' style="margin-bottom:20px;">
-<span class='h1 text-left' style="display:inline !important;">Orders</span>
-<span class='text-right go-back'><%= link_to '', dashboard_index_path, :class => 'glyphicon glyphicon-circle-arrow-left font-size', :title => 'Go Back' %></span>
+
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    ShopifyApp.ready(function(){
+      ShopifyApp.Bar.initialize({ title: "Orders" });
+    });
+  </script>
+<% end %>
+<%- model_class = Order -%>
+<div class="page-header" style="margin-top:-10px;">
+  <span class='h1 text-left' style="display:inline !important;"><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></span>
+  <span class='text-right go-back'><%= link_to '', dashboard_index_path, :class => 'glyphicon glyphicon-circle-arrow-left font-size', :title => 'Go Back' %></span>
 </div>
-   
+ 
 <div class="table-responsive"  style="margin-bottom:50px;">
 <table id="row-expand" class="table table-striped" cellspacing="0" width="100%">
-    <thead>
-        <tr>
-            <th>Order</th>
-            <th>Date</th>
-            <th>Customer</th>
-            <th>Payment Status</th>
-            <th>Fulfillment Status</th>
-            <th>Order Status</th>
-            <th>Total</th>
-            <th class="none"></th>                                  
-        </tr>
-    </thead>
-    <tbody class='myTable'>
-      <% @orders.each do |order| %>        
-        <tr>
-          <td><%= order.name %></td>
-          <td><%= order.created_at %></td>
-          <td><%= order.customer.first_name+" "+order.customer.last_name %></td>
-          <td><%= order.financial_status %></td>
-          <td>
-           <select class='form-control col-md-1'>            
-            <% if order.fulfillment_status %>
-            <option value="1"><%= order.fulfillment_status %></option> 
-            else
-            <option value="1">Unfulfilled</option>
-            <%end%>
-            <option value="2">Partially Fulfilled</option>
-            <option value="3">In Production</option>
-            <option value="4">Order Sheet Made</option>
-            <option value="5">On The Way</option>         
-           </select>
-          </td>
-          <td>
-           <select class='form-control col-md-1'>            
-            <% if order.tags %>
-            <option value="1"><%= order.tags%></option> 
-            else
-            <option value="1">Unfulfilled</option>
-            <%end%>
-            <option value="2">Partially Fulfilled</option>
-            <option value="3">In Production</option>
-            <option value="4">Order Sheet Made</option>
-            <option value="5">On The Way</option>         
-           </select>
-          </td>                   
-          <td>$<%= order.total_price %></td>         
-          <td>
-          <% order.line_items.each do |item| %>  
-          <ul class="list-group">
-          <li class="list-group-item active">Order Id : <%= order.id %>
-          Satatus:
-          <select class='form-control col-md-1'>
-           <option value="Unfulfilled">Unfulfilled</option>
-           <option value="OrderSheetMade">Order Sheet Made</option>
-           <option value="PartiallyFulfilled">Partially Fulfilled</option>
-           </select> 
-          <% if order.note != "" %> 
-          <span class="myBtn glyphicon glyphicon glyphicon-bell" title='This order has notes..'></span>
-          <%end%>                    
-          </li>                 
-          <li class="list-group-item"><span>Variant Title</span> : <%= item.title %> | <span>SKU</span> : <%= item.sku %> | <span>Total Quantity</span> : <%= item.quantity %> &times; <span>Price</span> : $<%= item.price %></li>         
-          </ul>          
-          <%end%>     
-          </td>                             
-        </tr>
-      <% end %>
-    </tbody>
+  <thead>
+      <tr>
+          <th>Order</th>
+          <th>Date</th>
+          <th>Customer</th>
+          <th>Payment Status</th>
+          <th>Fulfillment Status</th>
+          <th>Order Status</th>
+          <th>Total</th>
+          <th class="none"></th>                                  
+      </tr>
+  </thead>
+  <tbody class='myTable'>
+    <% @orders.each do |order| %>        
+      <tr>
+        <td><%= order.name %></td>
+        <td><%= order.created_at %></td>
+        <td><%= order.customer.first_name+" "+order.customer.last_name %></td>
+        <td><%= order.financial_status %></td>
+        <td>                     
+          <% if order.fulfillment_status %>
+          <%= order.fulfillment_status %>          
+          <%else%>
+          <%= @unfulfilled %>
+          <%end%>         
+        </td>
+        <td>
+         <select class='form-control col-md-1'> 
+         <option disabled="" selected="" value="">Select Status</option>                  
+          <% if order.tags != '' %>
+          <option value="1" selected><%= order.tags %></option> 
+          <%end%>         
+          <option value="2"><%= @unfulfilled %></option>         
+          <option value="3">Partially Fulfilled</option>
+          <option value="4">In Production</option>
+          <option value="5">Order Sheet Made</option>
+          <option value="6">Dispatched</option>        
+         </select>
+        </td>                   
+        <td>$<%= order.total_price %></td>                 
+        <td>
+        <% order.line_items.each do |item| %>  
+        <ul class="list-group">
+        <li class="list-group-item active">
+        OrderId:<span><%= order.id %></span>|Variant Title:<span> <%= item.title %></span> | SKU: <span><%= item.sku %></span> | Total Quantity: <span><%= item.quantity %></span> &times; Price: <span>$<%= item.price %></span>
+        <% if order.note != "" %> 
+        <span class="glyphicon glyphicon glyphicon-bell" data-placement="left" data-toggle="tooltip" title='This order has notes..'></span>
+        <%end%>
+        <select class='form-control col-md-1'>
+         <option value="Unfulfilled">Unfulfilled</option>
+         <option value="partially">Partially Fulfilled</option>
+         <option value="fulfilled">Fulfilled</option>
+         <option value="osm">Order Sheet Made</option>         
+         <option value="inproduction">In-Production</option>
+         </select>                                         
+        </li>                  
+        </ul>          
+        <%end%>
+        <form action='/orders/update' method='post' class="text-right">
+          <input type="hidden" name="_method" value="put" />
+          <input type="hidden" id="order_id" value="<%= order.id%>" />
+          <input type="hidden" name="tags" value="Post method testing.." />
+          <input type="submit" class="btn btn-warning status_submit" value="Save">
+        </form>        
+        </td>                             
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 </div>
 
 <script>  
 $(document).ready(function (){
-        var table = $("#row-expand").DataTable({
-            "responsive": true,
-            "order": [[ 0, "desc" ]]
-        });       
-    });
+      var table = $("#row-expand").DataTable({
+          "responsive": true,
+          "order": [[ 0, "desc" ]]
+      });       
+  });
 </script> 
 <script>
 $(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();
-  $(".myBtn").click(function(){
-    $(".myModal").modal();
-  });
+$('[data-toggle="tooltip"]').tooltip();
 });
 </script>
 
-
-  
+<script>   
+  $('.status_submit').on('click', function(e) {
+    e.preventDefault();
+    
+    $.ajax({     
+      url: '/orders/update',
+      type: 'PUT',
+      contentType: "application/json; charset=utf-8",
+      //data: JSON.stringify(order_status),
+      data: $('form').serialize(),
+      success: function(data) {
+          ShopifyApp.flashNotice("Order Status Updated..");
+          //$('form')[0].reset();
+      },
+      error: function() {
+          ShopifyApp.flashError("Warning: Order Status Updated Failed..");
+      }
+    })
+  });
+</script>
