@@ -4,7 +4,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
   # GET /orders
   # GET /orders.json
   def index
-    #@orders = Order.all
+    @unfulfilled = 'Unfulfilled'
     @orders = ShopifyAPI::Order.find(:all, params: { limit: 250})
     #@line_items = ShopifyAPI::LineItem.find(:all)
     @products = ShopifyAPI::Product.find(:all)
