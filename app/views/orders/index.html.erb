@@ -98,9 +98,8 @@ $(document).ready(function (){
 
     var tag_status = $(this).val();    
     $.ajax({     
-      url: "/orders/update",
+      url: "/orders/update/#{order.id}/",
       method: "POST",
-      dataType: "json",
       data: {tags: tag_status},
       success: function(data) {
           ShopifyApp.flashNotice("Order status successfully updated..");
