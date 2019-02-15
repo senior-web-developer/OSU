@@ -42,7 +42,7 @@
         </td>
         <td>
         <%= form_for order, :url =>{:action => "update", :id => order} do |f| %>
-         <select id="do" name="tags" class='form-control col-md-1' onchange="myFunction()> 
+         <select id="do" name="tags" class='form-control col-md-1 status_submit'> 
           <option disabled="" selected="" value="">Select Status</option>                  
           <% if order.tags != '' %>
           <option value="1" selected><%= order.tags %></option> 
@@ -60,7 +60,7 @@
         <% order.line_items.each do |item| %>  
         <ul class="list-group">
         <li class="list-group-item active">
-        OrderId:<span><%= order.id %></span>|Variant Title:<span> <%= item.title %></span> | SKU: <span><%= item.sku %></span> | Total Quantity: <span><%= item.quantity %></span> &times; Price: <span>$<%= item.price %></span>
+        VariantId:<span><%= item.variant_id %></span>|Variant Title:<span> <%= item.title %></span> | SKU: <span><%= item.sku %></span> | Total Quantity: <span><%= item.quantity %></span> &times; Price: <span>$<%= item.price %></span>
         <% if order.note != "" %> 
         <span class="glyphicon glyphicon glyphicon-bell"></span>
         <%end%>
@@ -91,11 +91,11 @@ $(document).ready(function (){
   });
 </script> 
 
-<script>
-  function myFunction() {
-    //var x = document.getElementById("mySelect").value;
-    //document.getElementById("demo").innerHTML = "You selected: " + x;
-   
+
+<script>   
+  $('.status_submit').on('change', function(e) {
+    e.preventDefault();
+    
     $.ajax({     
       url: "/orders/update",
       method: "POST",
@@ -104,27 +104,6 @@ $(document).ready(function (){
       data: $("form").serialize(),
       success: function(data) {
          alert("Order status successfully updated..")
-      },
-      error: function() {
-          ShopifyApp.flashError("Warning: Order Status Updated Failed..");
-      }
-    })
-  }
-</script>
-
-<script>   
-  $('.status_submit').on('click', function(e) {
-    e.preventDefault();
-    
-    $.ajax({     
-      url: '/orders/update',
-      type: 'PUT',
-      contentType: "application/json; charset=utf-8",
-      //data: JSON.stringify(order_status),
-      data: $('form').serialize(),
-      success: function(data) {
-          ShopifyApp.flashNotice("Order Status Updated..");
-          //$('form')[0].reset();
       },
       error: function() {
           ShopifyApp.flashError("Warning: Order Status Updated Failed..");
