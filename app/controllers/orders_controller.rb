@@ -5,7 +5,8 @@ class OrdersController < ShopifyApp::AuthenticatedController
   # GET /orders.json
   def index
     @unfulfilled = 'Unfulfilled'
-    @orders = ShopifyAPI::Order.find(:all, params: { created_at_min: (Time.now - 30.days), limit: 250 })
+    @orders = ShopifyAPI::Order.find(:all, params: { limit: 250 })
+    #@orders = ShopifyAPI::Order.find(:all, params: { created_at_min: (Time.now - 30.days), limit: 250 })
     #@line_items = ShopifyAPI::LineItem.find(:all)
     @products = ShopifyAPI::Product.find(:all)
     #@product = ShopifyAPI::Product.find(params[:id])
@@ -47,11 +48,11 @@ class OrdersController < ShopifyApp::AuthenticatedController
   def update
     @order = ShopifyAPI::Order.find(params[:id])
     #old_tag = @order.tags
-    updated_tags = params[:tags]
+    #updated_tags = params[:tags]
     if params[:id].present?
-      @order.tags = updated_tags.split(',').map(&:strip)
-      #updated_tags = tags.uniq.join(',')
-      #@order.tags = updated_tags
+      @order.tags = @order.tags.split(',').map(&:strip)
+      updated_tags = params[:tags].uniq.join(',')
+      @order.tags = updated_tags
       @order.save
       respond_to do |format|
         format.html { redirect_to orders_url, notice: 'Order was successfully updated..' }
