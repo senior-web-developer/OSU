@@ -41,17 +41,19 @@
           <%end%>         
         </td>
         <td>
-         <select class='form-control col-md-1'> 
-         <option disabled="" selected="" value="">Select Status</option>                  
+        <%= form_for order, :url =>{:action => "update", :id => order} do |f| %>
+         <select id="do" name="tags" class='form-control col-md-1' onchange="myFunction()> 
+          <option disabled="" selected="" value="">Select Status</option>                  
           <% if order.tags != '' %>
           <option value="1" selected><%= order.tags %></option> 
           <%end%>         
-          <option value="2"><%= @unfulfilled %></option>         
-          <option value="3">Partially Fulfilled</option>
-          <option value="4">In Production</option>
-          <option value="5">Order Sheet Made</option>
-          <option value="6">Dispatched</option>        
+          <option value="Unfulfilled"><%= @unfulfilled %></option>         
+          <option value="Partially Fulfilled">Partially Fulfilled</option>
+          <option value="In Production">In Production</option>
+          <option value="Order Sheet Made">Order Sheet Made</option>
+          <option value="Dispatched">Dispatched</option>        
          </select>
+         <%end%>
         </td>                   
         <td>$<%= order.total_price %></td>                 
         <td>
@@ -63,22 +65,16 @@
         <span class="glyphicon glyphicon glyphicon-bell"></span>
         <%end%>
         <select class='form-control col-md-1'>
+         <option disabled="" selected="" value="">Select Status</option>
          <option value="Unfulfilled">Unfulfilled</option>
-         <option value="partially">Partially Fulfilled</option>
-         <option value="fulfilled">Fulfilled</option>
-         <option value="osm">Order Sheet Made</option>         
-         <option value="inproduction">In-Production</option>
+         <option value="Partially Fulfilled">Partially Fulfilled</option>
+         <option value="Fulfilled">Fulfilled</option>
+         <option value="Order Sheet Made">Order Sheet Made</option>         
+         <option value="In-Production">In-Production</option>
          </select>                                         
         </li>                  
         </ul>          
-        <%end%>
-
-        <%= form_for order, :url =>{:action => "update", :id => order} do |f| %>
-          <%= f.text_field 'id', :class => 'form-control'  %>
-          <%= f.text_field 'tags', :class => 'form-control'  %>
-          <%= f.submit "Save", :class => 'btn btn-primary'%>         
-        <%end%>
-        
+        <%end%>        
         </td>                             
       </tr>
     <%end%>
@@ -94,6 +90,27 @@ $(document).ready(function (){
       });       
   });
 </script> 
+
+<script>
+  function myFunction() {
+    //var x = document.getElementById("mySelect").value;
+    //document.getElementById("demo").innerHTML = "You selected: " + x;
+   
+    $.ajax({     
+      url: "/orders/update",
+      method: "POST",
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      data: $("form").serialize(),
+      success: function(data) {
+         alert("Order status successfully updated..")
+      },
+      error: function() {
+          ShopifyApp.flashError("Warning: Order Status Updated Failed..");
+      }
+    })
+  }
+</script>
 
 <script>   
   $('.status_submit').on('click', function(e) {

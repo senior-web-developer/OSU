@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   post 'orders/create'
   patch 'orders/update'
   get 'orders/update'
-  
+   
   resources :orders
 end
