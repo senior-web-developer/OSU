@@ -46,12 +46,13 @@
           <option disabled="" selected="" value="">Select Status</option>                  
           <% if order.tags != '' %>
           <option value="1" selected><%= order.tags %></option> 
-          <%end%>         
-          <option value=""><%= @unfulfilled %></option>         
-          <option value="'Partially Fulfilled'">Partially Fulfilled</option>
-          <option value="'In Production'">In Production</option>
-          <option value="'Order Sheet Made'">Order Sheet Made</option>
-          <option value="'Dispatched'">Dispatched</option>        
+          <%end%>  
+          <option value="">Remove Status</option>       
+          <option value="Unfulfilled "><%= @unfulfilled %></option>         
+          <option value="Partially Fulfilled">Partially Fulfilled</option>
+          <option value="In Production">In Production</option>
+          <option value="Order Sheet Made">Order Sheet Made</option>
+          <option value="Dispatched">Dispatched</option>        
          </select>
          <%= f.submit "Save", :class => 'btn btn-primary btn-xs'%>
          <%end%>
@@ -61,18 +62,22 @@
         <% order.line_items.each do |item| %>  
         <ul class="list-group">
         <li class="list-group-item active">
-        VariantId:<span><%= item.variant_id %></span>|Variant Title:<span> <%= item.title %></span> | SKU: <span><%= item.sku %></span> | Total Quantity: <span><%= item.quantity %></span> &times; Price: <span>$<%= item.price %></span>
+         VariantId: <span><%= item.variant_id %></span> | Variant Title: <span> <%= item.title %></span> | SKU: <span><%= item.sku %></span> | Total Quantity: <span><%= item.quantity %></span> &times; Price: <span>$<%= item.price %></span>
         <% if order.note != "" %> 
         <span class="glyphicon glyphicon glyphicon-bell"></span>
         <%end%>
-        <select class='form-control col-md-1'>
-         <option disabled="" selected="" value="">Select Status</option>
-         <option value="Unfulfilled">Unfulfilled</option>
-         <option value="Partially Fulfilled">Partially Fulfilled</option>
-         <option value="Fulfilled">Fulfilled</option>
-         <option value="Order Sheet Made">Order Sheet Made</option>         
-         <option value="In-Production">In-Production</option>
-         </select>                                         
+        <%= form_for order, :url =>{:action => "update", :id => order} do |f| %>
+        <select id="do" name="tags" class='form-control col-md-1'>
+          <option disabled="" selected="" value="">Add Status</option>
+          <option value="">Remove Status</option>
+          <option value="Unfulfilled"><%= @unfulfilled %></option> 
+          <option value="Partially Fulfilled">Partially Fulfilled</option>
+          <option value="Fulfilled">Fulfilled</option>
+          <option value="Order Sheet Made">Order Sheet Made</option>         
+          <option value="In-Production">In-Production</option>
+         </select> 
+         <%= f.submit "Save", :class => 'btn btn-primary btn-xs'%>
+         <%end%>                                        
         </li>                  
         </ul>          
         <%end%>        
