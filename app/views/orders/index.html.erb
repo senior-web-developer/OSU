@@ -93,8 +93,7 @@ $(document).ready(function (){
 </script> 
 
 <script>   
-  $('.status_submit').on('click', function(e) {
-    e.preventDefault();    
+  $('.status_submit').on('click', function(e) {    
       success: function(data) {
           ShopifyApp.flashNotice("Order status successfully updated..");
       },

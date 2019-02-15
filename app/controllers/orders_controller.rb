@@ -47,7 +47,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
   def update
     @order = ShopifyAPI::Order.find(params[:id])
     if params[:id].present?
-      @order.tags + = params[:tags]    
+      @order.tags = params[:tags]    
       @order.save
     end     
     redirect_to '/orders/index'       
