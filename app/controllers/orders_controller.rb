@@ -47,7 +47,8 @@ class OrdersController < ShopifyApp::AuthenticatedController
   def update
     @order = ShopifyAPI::Order.find(params[:id])
     @order.tags = params[:tags]    
-    @order.save        
+    @order.save 
+    redirect_to '/orders/index'       
   end
 
   # DELETE /orders/1

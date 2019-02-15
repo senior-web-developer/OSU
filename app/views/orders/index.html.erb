@@ -95,13 +95,13 @@ $(document).ready(function (){
 <script>   
   $('.status_submit').on('change', function(e) {
     e.preventDefault();
-    
+
+    var tag_status = $(this).val();    
     $.ajax({     
       url: "/orders/update",
       method: "POST",
-      contentType: "application/json; charset=utf-8",
       dataType: "json",
-      data: $("form").serialize(),
+      data: {tags: tag_status},
       success: function(data) {
           ShopifyApp.flashNotice("Order status successfully updated..");
       },

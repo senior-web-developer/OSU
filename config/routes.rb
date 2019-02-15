@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   
   post 'orders/update'
   patch 'orders/update'
-  get 'orders/update'
+  get 'orders/index'
    
   resources :orders
 end
