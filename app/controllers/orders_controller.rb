@@ -50,8 +50,8 @@ class OrdersController < ShopifyApp::AuthenticatedController
     updated_tags = params[:tags]
     if params[:id].present?
       @order.tags = updated_tags.split(',').map(&:strip)
-      updated_tags = tags.uniq.join(',')
-      @order.tags = updated_tags
+      #updated_tags = tags.uniq.join(',')
+      #@order.tags = updated_tags
       @order.save
       respond_to do |format|
         format.html { redirect_to orders_url, notice: 'Order was successfully updated..' }
