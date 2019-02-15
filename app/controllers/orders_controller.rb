@@ -46,9 +46,12 @@ class OrdersController < ShopifyApp::AuthenticatedController
   # PATCH/PUT /orders/1.json
   def update
     @order = ShopifyAPI::Order.find(params[:id])
-    arrays = params[:tags]
+    old_tag = @order.tags
+    new_tag = params[:tags]
     if params[:id].present?
-      @order.tags = @order.tags +","+ params[:tags]
+      old_tag = new_tag.split(',').map(&:strip)
+      updated_tags = tags.uniq.join(',')
+      @rder.tag = updated_tags
       @order.save
       respond_to do |format|
         format.html { redirect_to orders_url, notice: 'Order was successfully updated..' }
