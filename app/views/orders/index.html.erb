@@ -42,7 +42,7 @@
         </td>
         <td>
         <%= form_for order, :url =>{:action => "update", :id => order} do |f| %>
-         <select id="do" name="tags" class='form-control col-md-1 status_submit'> 
+         <select id="do" name="tags" class='form-control col-md-1'> 
           <option disabled="" selected="" value="">Select Status</option>                  
           <% if order.tags != '' %>
           <option value="1" selected><%= order.tags %></option> 
@@ -53,7 +53,7 @@
           <option value="Order Sheet Made">Order Sheet Made</option>
           <option value="Dispatched">Dispatched</option>        
          </select>
-         <%= f.submit "Save", :class => 'btn btn-primary'%>
+         <%= f.submit "Save", :class => 'btn btn-primary btn-xs'%>
          <%end%>
         </td>                   
         <td>$<%= order.total_price %></td>                 
@@ -93,14 +93,8 @@ $(document).ready(function (){
 </script> 
 
 <script>   
-  $('.status_submit').on('change', function(e) {
-    e.preventDefault();
-
-    var tag_status = $(this).val();    
-    $.ajax({     
-      url: "/orders/update/#{order.id}/",
-      method: "POST",
-      data: {tags: tag_status},
+  $('.status_submit').on('click', function(e) {
+    e.preventDefault();    
       success: function(data) {
           ShopifyApp.flashNotice("Order status successfully updated..");
       },
