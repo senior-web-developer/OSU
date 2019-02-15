@@ -69,6 +69,9 @@
         <%= form_for order, :url =>{:action => "update", :id => order} do |f| %>
         <select id="do" name="tags" class='form-control col-md-1'>
           <option disabled="" selected="" value="">Select Status</option>
+          <% if order.tags != '' %>
+          <option value="1" selected><%= order.tags %></option> 
+          <%end%>
           <option value="">Remove Status</option>
           <option value="Unfulfilled"><%= @unfulfilled %></option> 
           <option value="Partially Fulfilled">Partially Fulfilled</option>
