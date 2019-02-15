@@ -56,8 +56,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
       #tag = %w[cur_tag] 
       cur_tag = new_tag.split(',')
       #@order.tags = tags.uniq.join(',')
-      hash_tag.merge!(key: new_tag)
-      @order.tags = hash_tag.merge!(key: cur_tag)
+      hash_tag.merge!(key: cur_tag)
       @order.save
       respond_to do |format|
         format.html { redirect_to orders_url, notice: 'Order was successfully updated..' }
