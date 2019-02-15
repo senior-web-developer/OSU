@@ -49,7 +49,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
     cur_tag = params[:tags]
     #updated_tags = params[:tags]
     if params[:id].present?
-      tag = %w[foo bar baz quux] 
+      tag = %w[cur_tag] 
       #tags = cur_tag.split(',').map(&:strip)
       #@order.tags = tags.uniq.join(',')
       @order.tags = tag
