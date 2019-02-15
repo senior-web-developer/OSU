@@ -66,6 +66,7 @@
         <% if order.note != "" %> 
         <span class="glyphicon glyphicon glyphicon-bell"></span>
         <%end%>
+        &nbsp;&nbsp;&nbsp;
         <%= form_for order, :url =>{:action => "update", :id => order} do |f| %>
         <select id="do" name="tags" class='form-control col-md-1'>
           <option disabled="" selected="" value="">Select Status</option>
