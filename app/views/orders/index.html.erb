@@ -53,6 +53,7 @@
           <option value="Order Sheet Made">Order Sheet Made</option>
           <option value="Dispatched">Dispatched</option>        
          </select>
+         <%= f.submit "Save", :class => 'btn btn-primary'%>
          <%end%>
         </td>                   
         <td>$<%= order.total_price %></td>                 
@@ -91,7 +92,6 @@ $(document).ready(function (){
   });
 </script> 
 
-
 <script>   
   $('.status_submit').on('change', function(e) {
     e.preventDefault();
@@ -103,10 +103,10 @@ $(document).ready(function (){
       dataType: "json",
       data: $("form").serialize(),
       success: function(data) {
-         alert("Order status successfully updated..")
+          ShopifyApp.flashNotice("Order status successfully updated..");
       },
       error: function() {
-          ShopifyApp.flashError("Warning: Order Status Updated Failed..");
+          ShopifyApp.flashError("Warning: Order status updated failed..");
       }
     })
   });
