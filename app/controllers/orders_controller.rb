@@ -5,7 +5,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
   # GET /orders.json
   def index
     @unfulfilled = 'Unfulfilled'
-    @orders = ShopifyAPI::Order.find(:all, params: { limit: 250})
+    @orders = ShopifyAPI::Order.find(:all, params: { created_at_min: (Time.now - 30.days), limit: 250 })
     #@line_items = ShopifyAPI::LineItem.find(:all)
     @products = ShopifyAPI::Product.find(:all)
     #@product = ShopifyAPI::Product.find(params[:id])
