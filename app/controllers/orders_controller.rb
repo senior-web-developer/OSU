@@ -74,8 +74,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
     cur_tag = @order.tags 
     new_tag = params[:tags]
     cur_tag.split(',')
-    if params[:id].present? 
-      if [cur_tags] == [new_tags]    
+    if params[:id].present?     
       #@order.tags = tags.uniq.join(',')
       cur_tag = [cur_tag] - [new_tag] 
       @order.tags = cur_tag.map
