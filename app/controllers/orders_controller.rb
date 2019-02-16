@@ -47,6 +47,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
   def update
     cur_tag = []
     new_tag = []
+    updated_tags = []
     @order = ShopifyAPI::Order.find(params[:id])
     cur_tag = @order.tags 
     new_tag = params[:tags]
@@ -56,8 +57,8 @@ class OrdersController < ShopifyApp::AuthenticatedController
       new_tag.split(',')
       cur_tag.split(',')
       #@order.tags = tags.uniq.join(',')
-     
-      @order.tags = [cur_tag] + [new_tag]
+      [cur_tag] + = [new_tag]
+      @order.tags = [cur_tag]
       @order.save
       respond_to do |format|
         format.html { redirect_to orders_url, notice: 'Order was successfully updated..' }
