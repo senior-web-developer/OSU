@@ -52,7 +52,6 @@ class OrdersController < ShopifyApp::AuthenticatedController
     cur_tag = @order.tags 
     new_tag = params[:tags]
     cur_tag.split(',')
-    #updated_tags = params[:tags]
     if params[:id].present?      
       #@order.tags = tags.uniq.join(',')
       cur_tag = [cur_tag] + [new_tag] 
@@ -62,18 +61,30 @@ class OrdersController < ShopifyApp::AuthenticatedController
         format.html { redirect_to orders_url, notice: 'Order was successfully updated..' }
         format.json { head :no_content }
       end
-    end     
-    #redirect_to '/orders/index'       
+    end            
   end
 
   # DELETE /orders/1
   # DELETE /orders/1.json
   def destroy
-    @order.destroy
-    respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    cur_tag = []
+    new_tag = []
+    updated_tags = []
+    @order = ShopifyAPI::Order.find(params[:id])
+    cur_tag = @order.tags 
+    new_tag = params[:tags]
+    cur_tag.split(',')
+    if params[:id].present? 
+      if [cur_tags] == [new_tags]    
+      #@order.tags = tags.uniq.join(',')
+      cur_tag = [cur_tag] - [new_tag] 
+      @order.tags = cur_tag.map
+      @order.save
+      respond_to do |format|
+        format.html { redirect_to orders_url, notice: 'Order was successfully destroyed..' }
+        format.json { head :no_content }
+      end
+    end     
   end
 
   private
