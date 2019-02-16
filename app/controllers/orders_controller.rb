@@ -67,23 +67,11 @@ class OrdersController < ShopifyApp::AuthenticatedController
   # DELETE /orders/1
   # DELETE /orders/1.json
   def destroy
-    cur_tag = []
-    new_tag = []
-    updated_tags = []
-    @order = ShopifyAPI::Order.find(params[:id])
-    cur_tag = @order.tags 
-    new_tag = params[:tags]
-    cur_tag.split(',')
-    if params[:id].present?     
-      #@order.tags = tags.uniq.join(',')
-      cur_tag = [cur_tag] - [new_tag] 
-      @order.tags = cur_tag.map
-      @order.save
-      respond_to do |format|
-        format.html { redirect_to orders_url, notice: 'Order was successfully destroyed..' }
-        format.json { head :no_content }
-      end
-    end     
+    @order.destroy
+    respond_to do |format|
+      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private

@@ -53,8 +53,7 @@
           <option value="OrderSheetMade">OrderSheetMade</option>
           <option value="Dispatched">Dispatched</option>        
          </select>
-         <%= f.submit "Save", :class => 'glyphicon glyphicon-save-file'%>
-         <%= f.submit "", :class => 'glyphicon glyphicon-remove'%>
+         <%= f.submit "Save", :class => 'btn btn-primary btn-xs'%>
          <%end%>
         </td>                   
         <td>$<%= order.total_price %></td>                 
@@ -79,7 +78,7 @@
           <option value="OrderSheetMade">Order Sheet Made</option>         
           <option value="InProduction">In-Production</option>
          </select> 
-         <%= f.submit "", :class => 'btn btn-default btn-xs'%>         
+         <%= f.submit "Save", :class => 'btn btn-default btn-xs'%>
          <%end%>                                        
         </li>                  
         </ul>          
