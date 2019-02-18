@@ -47,13 +47,13 @@
           <% if order.tags != '' %>
           <option value="<%= order.tags %>" selected><%= order.tags %></option> 
           <%end%>         
-          <option value="Unfulfilled "><%= @unfulfilled %></option> 
-          <option value="Fulfilled">Fulfilled</option>        
-          <option value="Partially Fulfilled">Partially Fulfilled</option>
-          <option value="Payment Recieved">Payment Recieved</option>   
-          <option value="InProduction">InProduction</option>
-          <option value="Order Sheet Made">Order Sheet Made</option>
-          <option value="Dispatched">Dispatched</option>        
+          <option value="Test1"><%= @unfulfilled %></option> 
+          <option value="Test2">Fulfilled</option>        
+          <option value="Test3">Partially Fulfilled</option>
+          <option value="Test4">Payment Recieved</option>   
+          <option value="Test5">InProduction</option>
+          <option value="Test6">Order Sheet Made</option>
+          <option value="Test7">Dispatched</option>        
          </select>
          <%= f.submit "Save", :class => 'btn btn-primary btn-xs'%>
          <%end%>
