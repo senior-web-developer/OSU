@@ -49,12 +49,9 @@
           <%end%>
           <% if order.tags[1] == "Fulfilled" %>
           <option value="Fulfilled" selected>Fulfilled</option> 
-          <%end%>
-            
+          <%end%>  
           <option value="Unfulfilled">Unfulfilled</option>
-          <option value="Fulfilled">Fulfilled</option>
-          <option value="PartiallyFulfilled">PartiallyFulfilled</option>
-          <option value="OrderSheetMade">OrderSheetMade</option>             
+          <option value="Fulfilled">Fulfilled</option>           
          </select>
          <%= f.submit "Save", :class => 'btn btn-primary btn-xs'%> 
          <%end%>
