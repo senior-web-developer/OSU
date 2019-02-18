@@ -49,12 +49,13 @@ class OrdersController < ShopifyApp::AuthenticatedController
     new_tag = []
     updated_tags = []
     @order = ShopifyAPI::Order.find(params[:id])
-    cur_tag = @order.tags 
+    cur_tag = @order.tags    
+    cur_tag.split(',')
     new_tag = params[:tags]
-    #cur_tag.split(',')
+    
     if params[:id].present?      
       #@order.tags = tags.uniq.join(',')
-      cur_tag = [cur_tag.split(',')] + [new_tag] 
+      cur_tag = [cur_tag] + [new_tag] 
       @order.tags = cur_tag.uniq
       @order.save
       respond_to do |format|
