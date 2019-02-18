@@ -44,7 +44,7 @@
         <%= form_for order, :url =>{:action => "update", :id => order} do |f| %>
          <select id="do" name="tags" class='form-control col-md-3'> 
           <option disabled="" selected="" value="">Select Status</option>                  
-          <% if order.tags[0]%>
+          <% if order.tags[0] == 'Unfulfilled' %>
           <option value="Unfulfilled" selected>Unfulfilled</option> 
           <%end%> 
           
