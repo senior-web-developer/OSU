@@ -49,9 +49,10 @@
           <%end%>         
           <option value="Unfulfilled "><%= @unfulfilled %></option> 
           <option value="Fulfilled">Fulfilled</option>        
-          <option value="PartiallyFulfilled">PartiallyFulfilled</option>
+          <option value="Partially Fulfilled">Partially Fulfilled</option>
+          <option value="Payment Recieved">Payment Recieved/option>   
           <option value="InProduction">InProduction</option>
-          <option value="OrderSheetMade">OrderSheetMade</option>
+          <option value="Order Sheet Made">Order Sheet Made</option>
           <option value="Dispatched">Dispatched</option>        
          </select>
          <%= f.submit "Save", :class => 'btn btn-primary btn-xs'%>
@@ -73,9 +74,10 @@
           <option value="<%= order.tags %>" selected><%= order.tags %></option> 
           <%end%>
           <option value="Unfulfilled"><%= @unfulfilled %></option> 
-          <option value="PartiallyFulfilled">Partially Fulfilled</option>
+          <option value="Partially Fulfilled">Partially Fulfilled</option>
+          <option value="Payment Recieved">Payment Recieved/option> 
           <option value="Fulfilled">Fulfilled</option>
-          <option value="OrderSheetMade">Order Sheet Made</option>         
+          <option value="Order Sheet Made">Order Sheet Made</option>         
           <option value="InProduction">In-Production</option>
          </select> 
          <%= f.submit "Save", :class => 'btn btn-default btn-xs'%>
