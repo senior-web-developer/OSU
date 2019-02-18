@@ -46,7 +46,9 @@
           <option disabled="" selected="" value="">Select Status</option>                  
           <% if order.tags[0] == "Unfulfilled" %>
           <option value="Unfulfilled" selected>Unfulfilled</option> 
-          <%end%>           
+          <%end%> 
+          <option value="Unfulfilled" selected>Unfulfilled</option>
+          <option value="Fulfilled" selected>Fulfilled</option>           
          </select>
          <%= f.submit "Save", :class => 'btn btn-primary btn-xs'%> 
          <%end%>
