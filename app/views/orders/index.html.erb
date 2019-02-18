@@ -47,7 +47,8 @@
           <% if order.tags != '' %>
           <option value="<%= order.tags %>" selected><%= order.tags %></option> 
           <%end%>         
-          <option value="Unfulfilled "><%= @unfulfilled %></option>         
+          <option value="Unfulfilled "><%= @unfulfilled %></option> 
+          <option value="Fulfilled">Fulfilled</option>        
           <option value="PartiallyFulfilled">PartiallyFulfilled</option>
           <option value="InProduction">InProduction</option>
           <option value="OrderSheetMade">OrderSheetMade</option>
@@ -69,9 +70,8 @@
         <select id="do" name="tags" class='form-control col-md-1'>
           <option disabled="" selected="" value="">Select Status</option>
           <% if order.tags != '' %>
-          <option value="1" selected><%= order.tags %></option> 
+          <option value="<%= order.tags %>" selected><%= order.tags %></option> 
           <%end%>
-          <option value="">Remove Status</option>
           <option value="Unfulfilled"><%= @unfulfilled %></option> 
           <option value="PartiallyFulfilled">Partially Fulfilled</option>
           <option value="Fulfilled">Fulfilled</option>
