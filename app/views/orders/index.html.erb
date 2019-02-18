@@ -43,7 +43,7 @@
         <td>
         <%= form_for order, :url =>{:action => "update", :id => order} do |f| %>
          <select id="do" name="tags" class='form-control col-md-3'> 
-          <option disabled="" selected="" value="">Select Status</option>                  
+          <option disabled="" selected="" value="">---Select Status---</option>                  
           <% if order.tags != '' %>
           <option value="<%= order.tags %>" selected><%= order.tags %></option> 
           <%end%>         
@@ -69,7 +69,7 @@
         <%end%>
         <%= form_for order, :url =>{:action => "update", :id => order}, :class => "btn-text-right" do |f| %>
         <select id="do" name="tags" class='form-control col-md-1'>
-          <option disabled="" selected="" value="">Select Status</option>
+          <option disabled="" selected="" value="">---Select Status---</option>
           <% if order.tags != '' %>
           <option value="<%= order.tags %>" selected><%= order.tags %></option> 
           <%end%>
