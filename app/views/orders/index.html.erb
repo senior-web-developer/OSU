@@ -46,10 +46,7 @@
           <option disabled="" selected="" value="">Select Status</option>                  
           <% if order.tags[0] == 'Unfulfilled' %>
           <option value="Unfulfilled" selected>Unfulfilled</option> 
-          <%end%> 
-          
-          
-         
+          <%end%>              
           <option value="Unfulfilled">Unfulfilled</option>  
           <option value="Fulfilled">Fulfilled</option>    
           <option value="PartiallyFulfilled">PartiallyFulfilled</option>  
@@ -67,8 +64,8 @@
         <% if order.note != "" %> 
         <span class="glyphicon glyphicon glyphicon-bell"></span>
         <%end%>
-        <%= form_for order, :url =>{:action => "update", :id => order}, :class => "btn-text-right" do |f| %>
-        <select id="do" name="tags" class='form-control col-md-1'>
+        <%= form_for order, :url =>{:action => "create", :id => order}, :class => "btn-text-right" do |f| %>
+        <select id="do" name="variant_tag" class='form-control col-md-1'>
           <option disabled="" selected="" value="">Select Status</option>
           <% if order.tags != '' %>
           <option value="<%= order.tags %>" selected><%= order.tags %></option> 

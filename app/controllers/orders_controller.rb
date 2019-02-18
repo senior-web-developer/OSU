@@ -29,17 +29,24 @@ class OrdersController < ShopifyApp::AuthenticatedController
   # POST /orders
   # POST /orders.json
   def create
-    @order = ShopifyAPI::Order.save(order_params)
+    cur_tag = []
+    new_tag = []
+    @order = ShopifyAPI::Order.find(params[:id])
+    cur_tag = @order.tags    
+    cur_tag.split(',').map
+    var_tag = params[:variant_tag]
 
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
-      else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+    if params[:id].present?      
+      #@order.tags = tags.uniq.join(',')
+      cur_tag = [cur_tag] + [var_tag]
+      @order.tags = cur_tag
+
+      @order.save
+      respond_to do |format|
+        format.html { redirect_to orders_url, notice: 'Variant product status was successfully updated..' }
+        format.json { head :no_content }
       end
-    end
+    end            
   end
 
   # PATCH/PUT /orders/1
@@ -60,7 +67,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
 
       @order.save
       respond_to do |format|
-        format.html { redirect_to orders_url, notice: 'Order was successfully updated..' }
+        format.html { redirect_to orders_url, notice: 'Order status was successfully updated..' }
         format.json { head :no_content }
       end
     end            
@@ -71,7 +78,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
   def destroy
     @order.destroy
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
+      format.html { redirect_to orders_url, notice: 'Order status was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
