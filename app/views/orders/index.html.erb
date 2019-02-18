@@ -44,7 +44,7 @@
         <%= form_for order, :url =>{:action => "update", :id => order} do |f| %>
          <select id="do" name="tags" class='form-control col-md-3'> 
           <option disabled="" selected="" value="">Select Status</option>                  
-          <% if order.tags[0] == 'Unfulfilled' %>
+          <% if order.tags[0] == order.tags[0] %>
           <option value="Unfulfilled" selected>Unfulfilled</option> 
           <%end%>              
           <option value="Unfulfilled">Unfulfilled</option>  
@@ -71,7 +71,6 @@
           <option value="<%= order.tags %>" selected><%= order.tags %></option> 
           <%end%>
           <option value="Unfulfilled: <%= item.variant_id %>"><%= @unfulfilled %></option> 
-          <option value="Unfulfilled: <%= item.variant_id %>"><%= @unfulfilled %></option>
           <option value="Payment Recieved:<%= item.variant_id %>">Payment Recieved</option> 
           <option value="Fulfilled:<%= item.variant_id %>">Fulfilled</option>
           <option value="Order Sheet Made:<%= item.variant_id %>">Order Sheet Made</option>         
@@ -98,14 +97,3 @@ $(document).ready(function (){
   });
 </script> 
 
-<script>   
-  $('.status_submit').on('click', function(e) {    
-      success: function(data) {
-          ShopifyApp.flashNotice("Order status successfully updated..");
-      },
-      error: function() {
-          ShopifyApp.flashError("Warning: Order status updated failed..");
-      }
-    })
-  });
-</script>
