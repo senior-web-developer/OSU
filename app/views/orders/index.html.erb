@@ -45,17 +45,11 @@
          <select id="do" name="tags" class='form-control col-md-1'> 
           <option disabled="" selected="" value="">Select Status</option>                  
           <% if order.tags == "Unfulfilled" %>
-          <option value="Unfulfilled" selected>Unfulfilled</option>          
+          <option value="Unfulfilled" selected>Unfulfilled</option> 
+          <%end%>         
           <% if order.tags == "Fulfilled" %>
-          <option value="Fulfilled" selected>Fulfilled</option>         
-          <% if order.tags == "PartiallyFulfilled" %>
-          <option value="PartiallyFulfilled" selected>PartialyFulfilled</option>          
-          <% if order.tags == "OrderSheetMade" %>
-          <option value="OrderSheetMade" selected>OrderSheetMade</option>
-          <%end%>
-          <%end%>
-          <%end%>
-          <%end%>
+          <option value="Fulfilled" selected>Fulfilled</option>
+          <%end%>            
 
           <option value="Unfulfilled">Unfulfilled</option>
           <option value="Fulfilled">Fulfilled</option>
