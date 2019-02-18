@@ -46,26 +46,7 @@
           <option disabled="" selected="" value="">Select Status</option>                  
           <% if order.tags == "Unfulfilled" %>
           <option value="Unfulfilled" selected>Unfulfilled</option> 
-          <%end%> 
-          <% if order.tags == "PartiallyFulfilled" %>
-          <option value="PartiallyFulfilled">PartiallyFulfilled</option>
-          <%end%> 
-          <%end%> 
-          <% if order.tags == "PaymentRecieved" %>
-          <option value="Payment Recieved">Payment Recieved</option>
-          <%end%>
-          <% if order.tags == "InProduction" %>
-          <option value="InProduction">InProduction</option>
-          <%end%> 
-          <% if order.tags == "OrderSheetMade" %>
-          <option value="OrderSheetMade">OrderSheetMade</option>
-          <%end%> 
-          <% if order.tags == "Dispatched" %>
-          <option value="Dispatched">Dispatched</option>
-          <%end%>
-          <% if order.tags == "Fulfilled" %>
-          <option value="Fulfilled">Fulfilled</option>
-          <%end%>        
+          <%end%>           
          </select>
          <%= f.submit "Save", :class => 'btn btn-primary btn-xs'%> 
          <%end%>
