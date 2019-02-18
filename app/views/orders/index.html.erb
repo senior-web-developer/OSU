@@ -42,16 +42,26 @@
         </td>
         <td>
         <%= form_for order, :url =>{:action => "update", :id => order} do |f| %>
-         <select id="do" name="tags" class='form-control col-md-1'> 
+         <select id="do" name="tags" class='form-control col-md-3'> 
           <option disabled="" selected="" value="">Select Status</option>                  
-          <% if order.tags[0] == "Unfulfilled" %>
+          <% if order.tags[0] == 'Unfulfilled' %>
           <option value="Unfulfilled" selected>Unfulfilled</option> 
+          <%end%> 
+          <% if order.tags[1] == 'Fulfilled' %>
+          <option value="Fulfilled">Fulfilled</option>
           <%end%>
-          <% if order.tags[1] == "Fulfilled" %>
-          <option value="Fulfilled" selected>Fulfilled</option> 
-          <%end%>  
-          <option value="Unfulfilled">Unfulfilled</option>
-          <option value="Fulfilled">Fulfilled</option>           
+          <% if order.tags[2] == 'PartiallyFulfilled' %>
+          <option value="PartiallyFulfilled">PartiallyFulfilled</option>
+          <%end%> 
+          <% if order.tags[3] == 'PaymentRecieved' %>
+          <option value="Payment Recieved">Payment Recieved</option>
+          <%end%>
+          
+         
+          <option value="Unfulfilled">Unfulfilled</option>  
+          <option value="Fulfilled">Fulfilled</option>    
+          <option value="PartiallyFulfilled">PartiallyFulfilled</option>  
+          <option value="PaymentRecieved">PaymentRecieved</option>         
          </select>
          <%= f.submit "Save", :class => 'btn btn-primary btn-xs'%> 
          <%end%>
