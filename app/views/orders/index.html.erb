@@ -51,9 +51,12 @@
           <option value="Fulfilled" selected>Fulfilled</option> 
           <%end%>
           <% if order.tags[2] == "PartiallyFulfilled" %>
-          <option value="PartiallyFulfilled" selected>PartiallyFulfilled</option>
+          <option value="PartiallyFulfilled" selected>PartialyFulfilled</option>
           <%end%>
-          
+          <% if order.tags[2] == "OrderSheetMade" %>
+          <option value="OrderSheetMade" selected>OrderSheetMade</option>
+          <%end%>
+
           <option value="Unfulfilled">Unfulfilled</option>
           <option value="Fulfilled">Fulfilled</option>
           <option value="PartiallyFulfilled">PartiallyFulfilled</option>
