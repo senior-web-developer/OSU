@@ -43,19 +43,31 @@
         <td>
         <%= form_for order, :url =>{:action => "update", :id => order} do |f| %>
          <select id="do" name="tags" class='form-control col-md-3'> 
-          <option disabled="" selected="" value="">---Select Status---</option>                  
-          <% if order.tags != '' %>
-          <option value="<%= order.tags %>" selected><%= order.tags %></option> 
-          <%end%>         
-          <option value="Unfulfilled"><%= @unfulfilled %></option> 
-          <option value="Fulfilled">Fulfilled</option>        
-          <option value="PartiallyFulfilled">Partially Fulfilled</option>
-          <option value="PaymentRecieved">Payment Recieved</option>   
+          <option disabled="" selected="" value="">Select Status</option>                  
+          <% if order.tags[0] == 'Unfulfilled' %>
+          <option value="Unfulfilled" selected>Unfulfilled</option> 
+          <%end%> 
+          <% if order.tags[1] == 'PartiallyFulfilled' %>
+          <option value="PartiallyFulfilled">PartiallyFulfilled</option>
+          <%end%> 
+          <%end%> 
+          <% if order.tags[2] == 'PaymentRecieved' %>
+          <option value="Payment Recieved">Payment Recieved</option>
+          <%end%>
+          <% if order.tags[3] == 'InProduction' %>
           <option value="InProduction">InProduction</option>
-          <option value="OrderSheetMade">Order Sheet Made</option>
-          <option value="Dispatched">Dispatched</option>        
+          <%end%> 
+          <% if order.tags[4] == 'OrderSheetMade' %>
+          <option value="OrderSheetMade">OrderSheetMade</option>
+          <%end%> 
+          <% if order.tags[5] == 'Dispatched' %>
+          <option value="Dispatched">Dispatched</option>
+          <%end%>
+          <% if order.tags[6] == 'Fulfilled' %>
+          <option value="Fulfilled">Fulfilled</option>
+          <%end%>        
          </select>
-         <%= f.submit "Save", :class => 'btn btn-primary btn-xs'%>
+         <%= f.submit "Save", :class => 'btn btn-primary btn-xs'%> 
          <%end%>
         </td>                   
         <td>$<%= order.total_price %></td>                 
@@ -69,7 +81,7 @@
         <%end%>
         <%= form_for order, :url =>{:action => "update", :id => order}, :class => "btn-text-right" do |f| %>
         <select id="do" name="tags" class='form-control col-md-1'>
-          <option disabled="" selected="" value="">---Select Status---</option>
+          <option disabled="" selected="" value="">Select Status</option>
           <% if order.tags != '' %>
           <option value="<%= order.tags %>" selected><%= order.tags %></option> 
           <%end%>
