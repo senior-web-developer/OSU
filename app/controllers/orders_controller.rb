@@ -50,7 +50,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
     updated_tags = []
     @order = ShopifyAPI::Order.find(params[:id])
     cur_tag = @order.tags    
-    cur_tag.split(', ').map
+    cur_tag.split(',').map
     new_tag = params[:tags]
 
     if params[:id].present?      
