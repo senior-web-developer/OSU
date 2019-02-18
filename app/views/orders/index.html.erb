@@ -45,7 +45,7 @@
          <select id="do" name="tags" class='form-control col-md-3'> 
           <option disabled="" selected="" value="">Select Status</option>                  
           <%= order.tags.each do |tag| %>
-          <% if tag[0] == "Unfulfilled" %>
+          <% if tag == "Unfulfilled" %>
           <option value="<%= order.tags %>" selected><%= order.tags %></option> 
           <%end%>
           <%end%>              
