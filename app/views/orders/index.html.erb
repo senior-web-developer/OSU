@@ -71,7 +71,7 @@
         <%= form_for order, :url =>{:action => "update", :id => order}, :class => "btn-text-right" do |f| %>
         <select id="do" name="tags" class='form-control col-md-1'>
           <option disabled="" selected="" value="">Select Status</option>
-          <% if order.tags != '' %>
+          <% if item.variant_id == item.variant_id %>
           <option value="<%= order.tags %>" selected><%= order.tags %></option> 
           <%end%>
           <option value="Unfulfilled: <%= item.variant_id %>"><%= @unfulfilled %></option>
