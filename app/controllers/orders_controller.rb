@@ -71,7 +71,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
 
       case @order.tags           
       when 'STATUS:Unfulfilled'
-        cur_tag = cur_tag.gsub(cur_tag, new_tag)
+        cur_tag = cur_tag.gsub("", new_tag)
       when 'STATUS:Fulfilled'
         cur_tag = cur_tag.gsub(cur_tag, new_tag)
       when 'STATUS:PartiallyFulfilled'
