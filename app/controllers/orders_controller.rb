@@ -60,23 +60,25 @@ class OrdersController < ShopifyApp::AuthenticatedController
     cur_tag.split(',').map
     new_tag = params[:tags]
     
-     case order.tags           
-        when 'STATUS:Unfulfilled'
-          cur_tag = cur_tag.gsub("", new_tag)
-        when 'STATUS:Fulfilled'
-          cur_tag = cur_tag.gsub("", new_tag)
-        when 'STATUS:PartiallyFulfilled'
-          cur_tag = cur_tag.gsub("", new_tag) 
-        when 'STATUS:PaymentRecieved'
-          cur_tag = cur_tag.gsub("", new_tag)
-     end
+     
 
     if params[:id].present?      
       #@order.tags = tags.uniq.join(',')
       #cur_tag = [cur_tag] + [new_tag]
       #@order.tags = cur_tag
       cur_tag = [cur_tag] + [new_tag]
-      @order.tags = cur_tag       
+      @order.tags = cur_tag  
+
+      case @order.tags           
+      when 'STATUS:Unfulfilled'
+        cur_tag = cur_tag.gsub(cur_tag, new_tag)
+      when 'STATUS:Fulfilled'
+        cur_tag = cur_tag.gsub(cur_tag, new_tag)
+      when 'STATUS:PartiallyFulfilled'
+        cur_tag = cur_tag.gsub(cur_tag, new_tag) 
+      when 'STATUS:PaymentRecieved'
+        cur_tag = cur_tag.gsub(cur_tag, new_tag)
+      end
 
       @order.save
       respond_to do |format|
