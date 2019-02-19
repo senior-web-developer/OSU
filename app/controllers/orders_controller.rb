@@ -65,12 +65,12 @@ class OrdersController < ShopifyApp::AuthenticatedController
       #cur_tag = [cur_tag] + [new_tag]
       #@order.tags = cur_tag
 
-      for i in 1..10 do
-        if cur_tag == nil
-          cur_tag = [cur_tag] + [new_tag]
-          @order.tags = cur_tag
-        end
-        
+      if cur_tag == nil
+        cur_tag = [cur_tag] + [new_tag]
+        @order.tags = cur_tag
+      end
+
+      for i in 1..10 do        
         if cur_tag[i] == "STATUS" + new_tag
           cur_tag = [cur_tag] + [new_tag]
           @order.tags = cur_tag   
