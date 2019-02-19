@@ -39,11 +39,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
     if params[:id].present?      
       #@order.tags = tags.uniq.join(',')
       cur_tag = [cur_tag] + [var_tag]
-      @order.tags = cur_tag
-
-      for i in 0..5 
-        if @order.tags[i] == 'STATUS' 
-        [cur_tag] = 'STATUS' + @order.tags
+      @order.tags = cur_tag     
 
       @order.save
       respond_to do |format|
