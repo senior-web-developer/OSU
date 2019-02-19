@@ -67,8 +67,8 @@ class OrdersController < ShopifyApp::AuthenticatedController
       cur_tag = [cur_tag] + [new_tag]
       @order.tags = cur_tag        
        
-        for i in 1..5 
-          case cur_tag[i]          
+        cur_tag.each do |status_tag|
+          case status_tag          
           when 'STATUS:Unfulfilled'
             cur_tag = cur_tag.gsub("STATUS", new_tag)
           when 'STATUS:Fulfilled'
