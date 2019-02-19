@@ -66,7 +66,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
       #@order.tags = cur_tag
 
       for i in 1..10 do
-        if cur_tag.index(i) == "STATUS" + new_tag
+        if cur_tag[i] == "STATUS" + new_tag
           cur_tag = [cur_tag] + [new_tag]
           @order.tags = cur_tag 
           break         
