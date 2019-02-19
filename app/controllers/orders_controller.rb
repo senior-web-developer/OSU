@@ -65,20 +65,8 @@ class OrdersController < ShopifyApp::AuthenticatedController
       #cur_tag = [cur_tag] + [new_tag]
       #@order.tags = cur_tag
       cur_tag = [cur_tag] + [new_tag]
-      @order.tags = cur_tag        
-       
-        cur_tag.each do |status_tag|
-          case status_tag          
-          when 'STATUS:Unfulfilled'
-            cur_tag = cur_tag.gsub("STATUS", new_tag)
-          when 'STATUS:Fulfilled'
-            cur_tag = cur_tag.gsub(cur_tag, new_tag)
-          when 'STATUS:PartiallyFulfilled'
-            cur_tag = cur_tag.gsub(cur_tag, new_tag) 
-          when 'STATUS:PaymentRecieved'
-            cur_tag = cur_tag.gsub(cur_tag, new_tag)
-          end
-        end
+      @order.tags = cur_tag         
+        
       
 
       @order.save
