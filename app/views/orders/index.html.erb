@@ -46,10 +46,13 @@
           <option disabled="" selected="" value="">Select Status</option>                  
           <% if order.tags == "Unfulfilled" %>
           <option value="<%= order.tags %>" selected><%= order.tags %></option>
+          <%end%>
           <% elseif order.tags == 'Fulfilled' %>
           <option value="<%= order.tags %>" selected><%= order.tags %></option> 
-          <% elseif order.tags == 'PaymentRecieved' %>
+          <%end%>
+          <% elseif order.tags == 'PaymentRecieved' %>         
           <option value="<%= order.tags %>" selected><%= order.tags %></option> 
+          <%end%>
           <% elseif order.tags == 'PaymentRecieved' %>
           <option value="<%= order.tags %>" selected><%= order.tags %></option>
           <%end%>
