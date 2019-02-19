@@ -69,10 +69,6 @@ class OrdersController < ShopifyApp::AuthenticatedController
         if @order.tags[i] == "STATUS"
           @order.tags[i] = [cur_tag] + [new_tag]
           @order.tags = cur_tag
-
-          respond_to do |format|
-           format.html { notice: 'Order status was already added..' }
-          end
           i+=1;
         end
       end
