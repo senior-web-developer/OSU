@@ -65,15 +65,8 @@ class OrdersController < ShopifyApp::AuthenticatedController
       #cur_tag = [cur_tag] + [new_tag]
       #@order.tags = cur_tag
       cur_tag = [cur_tag] + [new_tag]
-      @order.tags = cur_tag
-
-      for i in 1..10 do        
-        if cur_tag[i] === new.gsub("STATUS")
-          puts cur_tag[i]
-          cur_tag[i] = [new_tag]
-          @order.tags = cur_tag   
-        end
-      end
+      @order.tags = cur_tag    
+      
 
       @order.save
       respond_to do |format|
