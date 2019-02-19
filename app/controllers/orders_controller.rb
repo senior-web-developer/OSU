@@ -64,13 +64,15 @@ class OrdersController < ShopifyApp::AuthenticatedController
       #@order.tags = tags.uniq.join(',')
       cur_tag = [cur_tag] + [new_tag]
       @order.tags = cur_tag
-      for i in cur_tag.length
+      i=0
+      loop do i 
         if @order.tags[i] == "STATUS"
           @order.tags[i] == cur_tag
 
           respond_to do |format|
            format.html { notice: 'Order status was already added..' }
           end
+          i+=1;
         end
       end
 
