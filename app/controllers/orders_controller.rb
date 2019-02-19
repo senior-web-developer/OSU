@@ -65,9 +65,11 @@ class OrdersController < ShopifyApp::AuthenticatedController
       #cur_tag = [cur_tag] + [new_tag]
       #@order.tags = cur_tag
       cur_tag = [cur_tag] + [new_tag]
-      @order.tags = cur_tag         
-        
+      @order.tags = cur_tag  
       
+      if @order.tags != ""
+       @order.tags[0] = new_tag
+      end
 
       @order.save
       respond_to do |format|
