@@ -67,11 +67,23 @@ class OrdersController < ShopifyApp::AuthenticatedController
       cur_tag = [cur_tag] + [new_tag]
       @order.tags = cur_tag        
        
+        for i in 1..5 
+          case cur_tag[i]          
+          when 'STATUS:Unfulfilled'
+            cur_tag = cur_tag.gsub("STATUS", new_tag)
+          when 'STATUS:Fulfilled'
+            cur_tag = cur_tag.gsub(cur_tag, new_tag)
+          when 'STATUS:PartiallyFulfilled'
+            cur_tag = cur_tag.gsub(cur_tag, new_tag) 
+          when 'STATUS:PaymentRecieved'
+            cur_tag = cur_tag.gsub(cur_tag, new_tag)
+          end
+        end
       
 
       @order.save
       respond_to do |format|
-        format.html { redirect_to orders_url, notice: 'Order status was successfully updated..' +cur_tag[0]}
+        format.html { redirect_to orders_url, notice: 'Order status was successfully updated..'}
         format.json { head :no_content }
       end
     end            
