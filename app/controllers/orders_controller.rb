@@ -60,30 +60,17 @@ class OrdersController < ShopifyApp::AuthenticatedController
     cur_tag.split(',').map
     new_tag = params[:tags]
     
-     
-
     if params[:id].present?      
       #@order.tags = tags.uniq.join(',')
       #cur_tag = [cur_tag] + [new_tag]
       #@order.tags = cur_tag
       cur_tag = [cur_tag] + [new_tag]
-      
-      case cur_tag          
-      when 'STATUS:Unfulfilled'
-        cur_tag = cur_tag.gsub("STATUS", new_tag)
-      when 'STATUS:Fulfilled'
-        cur_tag = cur_tag.gsub(cur_tag, new_tag)
-      when 'STATUS:PartiallyFulfilled'
-        cur_tag = cur_tag.gsub(cur_tag, new_tag) 
-      when 'STATUS:PaymentRecieved'
-        cur_tag = cur_tag.gsub(cur_tag, new_tag)
-      end
+      @order.tags = cur_tag        
        
-      @order.tags = cur_tag  
 
       @order.save
       respond_to do |format|
-        format.html { redirect_to orders_url, notice: 'Order status was successfully updated..' }
+        format.html { redirect_to orders_url, cur_tag, notice: 'Order status was successfully updated..' }
         format.json { head :no_content }
       end
     end            
