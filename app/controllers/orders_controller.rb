@@ -64,7 +64,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
       #@order.tags = tags.uniq.join(',')
       cur_tag = [cur_tag] + [new_tag]
       @order.tags = cur_tag
-      for i in 0..5
+      for i in cur_tag.length
         if @order.tags[i] == "STATUS"
           @order.tags[i] == cur_tag
 
