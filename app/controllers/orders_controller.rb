@@ -41,6 +41,10 @@ class OrdersController < ShopifyApp::AuthenticatedController
       cur_tag = [cur_tag] + [var_tag]
       @order.tags = cur_tag
 
+      for i in 0..5 
+        if @order.tags[i] == 'STATUS' 
+        [cur_tag] = 'STATUS' + @order.tags
+
       @order.save
       respond_to do |format|
         format.html { redirect_to orders_url, notice: 'Variant product status was successfully updated..' }

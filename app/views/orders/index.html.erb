@@ -43,23 +43,23 @@
         <td>
         <%= form_for order, :url =>{:action => "update", :id => order} do |f| %>
          <select id="do" name="tags" class='form-control col-md-3'> 
-          <option disabled="" selected="" value="">Select Status</option> 
+          <option disabled="" selected="" value="">Select Status</option>
+
           <% case order.tags %>           
-          <% when 'MyApp:Unfulfilled' %>
-          <option value="<%= order.tags %>" selected><%= order.tags %></option>
-          <% when 'MyApp:Fulfilled' %>
-           <option value="<%= order.tags %>" selected><%= order.tags %></option>
-          <% when 'MyApp:PartiallyFulfilled' %>
-           <option value="<%= order.tags %>" selected><%= order.tags %></option>
-          <% when 'MyApp:PaymentRecieved'%>
-           <option value="<%= order.tags %>" selected><%= order.tags %></option>
-          <%end%>                
-          
+            <% when 'STATUS:Unfulfilled' %>
+            <option value="<%= order.tags %>" selected><%= order.tags %></option>
+            <% when 'STATUS:Fulfilled' %>
+            <option value="<%= order.tags %>" selected><%= order.tags %></option>
+            <% when 'STATUS:PartiallyFulfilled' %>
+            <option value="<%= order.tags %>" selected><%= order.tags %></option>
+            <% when 'STATUS:PaymentRecieved'%>
+            <option value="<%= order.tags %>" selected><%= order.tags %></option>
+          <%end%>         
                  
-          <option value="MyApp:Unfulfilled">MyApp:Unfulfilled</option>  
-          <option value="MyApp:Fulfilled">MyApp:Fulfilled</option>    
-          <option value="MyApp:PartiallyFulfilled">MyApp:PartiallyFulfilled</option>  
-          <option value="MyApp:PaymentRecieved">MyApp:PaymentRecieved</option>         
+          <option value="STATUS:Unfulfilled">STATUS:Unfulfilled</option>  
+          <option value="STATUS:Fulfilled">STATUS:Fulfilled</option>    
+          <option value="STATUS:PartiallyFulfilled">STATUS:PartiallyFulfilled</option>  
+          <option value="STATUS:PaymentRecieved">STATUS:PaymentRecieved</option>         
          </select>
          <%= f.submit "Save", :class => 'btn btn-primary btn-xs'%> 
          <%end%>
