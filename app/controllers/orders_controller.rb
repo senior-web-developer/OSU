@@ -54,7 +54,8 @@ class OrdersController < ShopifyApp::AuthenticatedController
   def update
     cur_tag = []
     new_tag = []
-    my_hash = {}
+    #my_hash = {}
+    value
     @order = ShopifyAPI::Order.find(params[:id])
     cur_tag = @order.tags    
     cur_tag.split(',').map
@@ -67,9 +68,9 @@ class OrdersController < ShopifyApp::AuthenticatedController
       cur_tag = [cur_tag] + [new_tag]
       @order.tags = cur_tag  
 
-      for i in 0..20         
-        if cur_tag[i] 'STATUS:Unfulfilled'
-        cur_tag[i] = new_tag
+      for value in 0..20         
+        if cur_tag[value] 'STATUS:Unfulfilled'
+        cur_tag[value] = new_tag
         @order.tags = cur_tag
         end
       end
