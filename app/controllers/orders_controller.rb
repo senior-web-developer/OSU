@@ -67,7 +67,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
       #@order.tags = cur_tag      
 
       for cur_tag in 0..cur_tag.length         
-        if cur_tag.index(new_tag)
+        if cur_tag.index(value) == new_tag
           cur_tag[value] = new_tag
           @order.tags = cur_tag
         else
@@ -79,7 +79,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
 
       @order.save
       respond_to do |format|
-        format.html { redirect_to orders_url, notice: 'Order status was successfully updated..'+cur_tag.index(new_tag)}
+        format.html { redirect_to orders_url, notice: 'Order status was successfully updated..'}
         format.json { head :no_content }
       end
     end
