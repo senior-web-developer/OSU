@@ -54,6 +54,8 @@
             <option value="<%= order.tags %>" selected><%= order.tags %></option>
             <% when 'STATUS:PaymentRecieved'%>
             <option value="<%= order.tags %>" selected><%= order.tags %></option>
+            <%else%>
+            <option value="<%= order.tags %>" selected><%= order.tags %></option>
           <%end%>         
                  
           <option value="STATUS:Unfulfilled">STATUS:Unfulfilled</option>  
