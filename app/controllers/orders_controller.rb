@@ -67,7 +67,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
       #@order.tags = cur_tag      
 
       for cur_tag in 0..cur_tag.length         
-        if cur_tag.index(0) == 'STATUS:Unfulfilled'
+        if cur_tag.index(cur_tag) == new_tag
           cur_tag[value] = new_tag
           @order.tags = cur_tag
         else
