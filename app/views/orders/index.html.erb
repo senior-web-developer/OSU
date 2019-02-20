@@ -78,8 +78,7 @@
           <option disabled="" selected="" value="">Select Status</option>
           <% if order.tags == item.variant_id %>
           <option value="<%= order.tags %>" selected><%= order.tags %></option> 
-          <%end%>
-          <option value="Unfulfilled: <%= item.variant_id %>"><%= @unfulfilled %></option> 
+          <%end%>          
           <option value="Delayed:Fabric unavailable-<%= item.variant_id %>">Delayed:Fabric unavailable</option> 
           <option value="Delayed:Fabric ordered from mill-<%= item.variant_id %>">Delayed:Fabric ordered from mill</option>
           <option value="Delayed:Awaiting info from customer-<%= item.variant_id %>">Delayed:Awaiting info from customer</option>         
