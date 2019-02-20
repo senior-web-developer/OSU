@@ -66,7 +66,6 @@ class OrdersController < ShopifyApp::AuthenticatedController
 
       if cur_tag != ""      
         cur_tag[1] = new_tag
-      end
        else
       cur_tag = [cur_tag] + [new_tag]
       @order.tags = cur_tag 
