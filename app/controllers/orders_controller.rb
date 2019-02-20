@@ -63,15 +63,15 @@ class OrdersController < ShopifyApp::AuthenticatedController
     
     if params[:id].present? 
        
+
+      if cur_tag == ""      
+      cur_tag.each do |pos, str|
+        cur_tag[pos.to_i] = str
+       else
       cur_tag = [cur_tag] + [new_tag]
       @order.tags = cur_tag 
-
-      cur_tag.each_with_index do |value, index|
-       puts "#{index}: #{value}"
-      end  
+      end 
         
-        
-
       @order.save
       respond_to do |format|
         format.html { redirect_to orders_url, notice: 'Order status was successfully updated..'}
