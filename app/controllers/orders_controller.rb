@@ -66,11 +66,11 @@ class OrdersController < ShopifyApp::AuthenticatedController
       #cur_tag = [cur_tag] + [new_tag]
       #@order.tags = cur_tag      
       cur_tag = [cur_tag] + [new_tag]
-      @order.tags = cur_tag 
+      @order.tags = cur_tag.join(', ') 
 
       @order.save
       respond_to do |format|
-        format.html { redirect_to orders_url, notice: 'Order status was successfully updated..'+cur_tag.length}
+        format.html { redirect_to orders_url, notice: 'Order status was successfully updated..'}
         format.json { head :no_content }
       end
     end
