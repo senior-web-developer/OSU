@@ -62,25 +62,22 @@ class OrdersController < ShopifyApp::AuthenticatedController
     new_tag = params[:tags]
     
     if params[:id].present? 
-    
+       
+      cur_tag = [cur_tag] + [new_tag]
+      @order.tags = cur_tag 
+
+      cur_tag.each_with_index do |value, index|
+       puts "#{index}: #{value}"
+      end  
         
-        if(@order.tags == "")
-        #@order.tags = tags.uniq.join(',')
-        #cur_tag = [cur_tag] + [new_tag]
-        #@order.tags = cur_tag      
-        cur_tag = [cur_tag] + [new_tag]
-        @order.tags = cur_tag.join(', ') 
-        else
-          cur_tag = cur_tag.gsub(cur_tag, new_tag)
-          @order.tags = cur_tag
-        end
         
 
       @order.save
       respond_to do |format|
         format.html { redirect_to orders_url, notice: 'Order status was successfully updated..'}
         format.json { head :no_content }
-      end
+      
+    end
     end
 
   end
