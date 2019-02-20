@@ -71,7 +71,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
         cur_tag = [cur_tag] + [new_tag]
         @order.tags = cur_tag.join(', ') 
         else
-          cur_tag.delete_at(0)
+          cur_tag.delete_at("STATUS:Unfulfilled")
         end
         
 
