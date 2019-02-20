@@ -66,8 +66,10 @@ class OrdersController < ShopifyApp::AuthenticatedController
       #@order.tags = cur_tag
       cur_tag = [cur_tag] + [new_tag]
       @order.tags = cur_tag  
+
+      hash = cur_tag.map {|x| [x,true]}.to_h
       
-      if @order.tags != ""
+      if hash.has_key? new_tag
        @order.tags[0] = new_tag
       end
 
