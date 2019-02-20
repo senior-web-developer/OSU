@@ -67,13 +67,12 @@ class OrdersController < ShopifyApp::AuthenticatedController
       cur_tag = [cur_tag] + [new_tag]
       @order.tags = cur_tag  
 
-      for i in 0..20 do         
-      if cur_tag[i] 'STATUS:Unfulfilled'
-       cur_tag[i] = new_tag
-       @order.tags = cur_tag
+      for i in 0..20         
+        if cur_tag[i] 'STATUS:Unfulfilled'
+        cur_tag[i] = new_tag
+        @order.tags = cur_tag
+        end
       end
-       
-    end
 
       @order.save
       respond_to do |format|
