@@ -69,8 +69,8 @@ class OrdersController < ShopifyApp::AuthenticatedController
 
       hash = cur_tag.map {|x| [x,true]}.to_h
       
-      if hash.has_key? new_tag
-       @order.tags[0] = new_tag
+      if hash.has_key?  'STATUS:Unfulfilled'
+       @order.tags[has_key] = new_tag
       end
 
       @order.save
