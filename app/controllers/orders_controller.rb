@@ -71,7 +71,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
         cur_tag = [cur_tag] + [new_tag]
         @order.tags = cur_tag.join(', ') 
         else
-          cur_tag = cur_tag.gsub(new_tag, new_tag)
+          cur_tag = cur_tag.gsub(cur_tag, new_tag)
           @order.tags = cur_tag
         end
         
