@@ -65,17 +65,8 @@ class OrdersController < ShopifyApp::AuthenticatedController
       #@order.tags = tags.uniq.join(',')
       #cur_tag = [cur_tag] + [new_tag]
       #@order.tags = cur_tag      
-      value=0
-      for cur_tag in 0..cur_tag.length         
-        if cur_tag.index(value) == new_tag
-          cur_tag[value] = new_tag
-          @order.tags = cur_tag
-        else
-          cur_tag = [cur_tag] + [new_tag]
-          @order.tags = cur_tag  
-        end
-        value = value + 1;
-      end
+      cur_tag = [cur_tag] + [new_tag]
+      @order.tags = cur_tag 
 
       @order.save
       respond_to do |format|
