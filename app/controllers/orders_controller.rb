@@ -67,6 +67,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
       if cur_tag == ""      
       cur_tag.each do |pos, str|
         cur_tag[pos.to_i] = str
+      end
        else
       cur_tag = [cur_tag] + [new_tag]
       @order.tags = cur_tag 
