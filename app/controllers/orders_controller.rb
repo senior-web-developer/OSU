@@ -55,6 +55,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
     cur_tag = []
     new_tag = []
     updated_tags = []
+    my_hash = {}
     @order = ShopifyAPI::Order.find(params[:id])
     cur_tag = @order.tags    
     cur_tag.split(',').map
@@ -67,19 +68,21 @@ class OrdersController < ShopifyApp::AuthenticatedController
       cur_tag = [cur_tag] + [new_tag]
       @order.tags = cur_tag  
 
-      
-    cur_tag.each do |k|
-      if k?  'STATUS:Unfulfilled'
-       @order.tags[k] = new_tag
+      my_hash = cur_tag.map {|x| [x,true]}.to_h
+  
+      if my_hash.has_key?  "STATUS:Unfulfilled"
+       cur_tag[k] = new_tag
+       @order.tags = cur_tag
       end
-    end
+
 
       @order.save
       respond_to do |format|
         format.html { redirect_to orders_url, notice: 'Order status was successfully updated..'}
         format.json { head :no_content }
       end
-    end            
+    end
+
   end
 
   # DELETE /orders/1
