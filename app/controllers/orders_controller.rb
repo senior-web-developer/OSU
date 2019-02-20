@@ -63,10 +63,10 @@ class OrdersController < ShopifyApp::AuthenticatedController
     
     if params[:id].present? 
       value=0
-      for cur_tag in 0..10
-        if(cur_tag[value] == new_tag[value])
+      for cur_tag in 0..cur_tag.length
+        if(cur_tag[value] == 'STATUS:Unfulfilled')
           cur_tag[value] = new_tag
-          value = value + 1
+          break
         else
         #@order.tags = tags.uniq.join(',')
         #cur_tag = [cur_tag] + [new_tag]
@@ -74,9 +74,8 @@ class OrdersController < ShopifyApp::AuthenticatedController
         cur_tag = [cur_tag] + [new_tag]
         @order.tags = cur_tag.join(', ') 
         end
+        value = value + 1
       end
-
-      
 
       @order.save
       respond_to do |format|
