@@ -62,16 +62,16 @@ class OrdersController < ShopifyApp::AuthenticatedController
     new_tag = params[:tags]
     
     if params[:id].present? 
-      value=0
+    
         
-        if(cur_tag == nil)
+        if([cur_tag] == "")
         #@order.tags = tags.uniq.join(',')
         #cur_tag = [cur_tag] + [new_tag]
         #@order.tags = cur_tag      
         cur_tag = [cur_tag] + [new_tag]
         @order.tags = cur_tag.join(', ') 
         else
-          cur_tag.delete_at("STATUS:Unfulfilled")
+          [cur_tag].delete_at("STATUS:Unfulfilled")
         end
         
 
