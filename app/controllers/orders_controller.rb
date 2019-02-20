@@ -55,7 +55,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
     cur_tag = []
     new_tag = []
     #my_hash = {}
-    value=0
+    
     @order = ShopifyAPI::Order.find(params[:id])
     cur_tag = @order.tags    
     cur_tag.split(',').map
@@ -65,7 +65,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
       #@order.tags = tags.uniq.join(',')
       #cur_tag = [cur_tag] + [new_tag]
       #@order.tags = cur_tag      
-
+      value=0
       for cur_tag in 0..cur_tag.length         
         if cur_tag.index(value) == new_tag
           cur_tag[value] = new_tag
@@ -79,7 +79,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
 
       @order.save
       respond_to do |format|
-        format.html { redirect_to orders_url, notice: 'Order status was successfully updated..'}
+        format.html { redirect_to orders_url, notice: 'Order status was successfully updated..'+cur_tag.length}
         format.json { head :no_content }
       end
     end
