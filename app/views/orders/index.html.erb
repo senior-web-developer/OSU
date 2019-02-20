@@ -77,7 +77,7 @@
         <%= form_for order, :url =>{:action => "create", :id => order}, :class => "btn-text-right" do |f| %>
         <select id="do" name="variant_tag" class='form-control col-md-1'>
           <option disabled="" selected="" value="">Select Status</option>
-          <% if order.tags == item.variant_id %>
+          <% if order.tags != "" %>
           <option value="<%= order.tags %>" selected><%= order.tags %></option> 
           <%end%>          
           <option value="Delayed:Fabric unavailable-<%= item.variant_id %>">Delayed:Fabric unavailable</option> 
