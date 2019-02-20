@@ -64,7 +64,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
     if params[:id].present? 
     
         
-        if([cur_tag] == "")
+        if(@order.tags == "")
         #@order.tags = tags.uniq.join(',')
         #cur_tag = [cur_tag] + [new_tag]
         #@order.tags = cur_tag      
@@ -72,7 +72,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
         @order.tags = cur_tag.join(', ') 
         else
           cur_tag = cur_tag.gsub("STATUS:",new_tag)
-          @order.tags = cur_tag.join(', ')
+          @order.tags = cur_tag
         end
         
 
