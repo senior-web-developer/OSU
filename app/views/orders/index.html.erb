@@ -69,7 +69,7 @@
         <% order.line_items.each do |item| %>  
         <ul class="list-group">
         <li class="list-group-item active">
-        <span> Variant Title: <span> <%= item.title %></span> | SKU: <span><%= item.sku %></span> | Total Quantity: <span><%= item.quantity %></span> &times; Price: <span>$<%= item.price %></span>
+         Variant Title: <span> <%= item.title %></span> | SKU: <span><%= item.sku %></span> | Total Quantity: <span><%= item.quantity %></span> &times; Price: <span>$<%= item.price %></span>
         <% if order.note != "" %> 
         <span class="glyphicon glyphicon glyphicon-bell" title="This order has notes.."></span>
         <%end%>
