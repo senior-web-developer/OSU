@@ -79,7 +79,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
 
       @order.save
       respond_to do |format|
-        format.html { redirect_to , notice: 'Order status was successfully updated..'}
+        format.html { redirect_to '', notice: 'Order status was successfully updated..'}
         format.json { head :no_content }
       end
     end
