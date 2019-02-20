@@ -73,6 +73,7 @@
         <% if order.note != "" %> 
         <span class="glyphicon glyphicon glyphicon-bell"></span>
         <%end%>
+        <span style="float:right; display:inline-block;">
         <%= form_for order, :url =>{:action => "create", :id => order}, :class => "btn-text-right" do |f| %>
         <select id="do" name="variant_tag" class='form-control col-md-1'>
           <option disabled="" selected="" value="">Select Status</option>
@@ -85,7 +86,8 @@
           <option value="Delayed:Other reason-%= item.variant_id %>">Delayed:Other reason</option>
          </select> 
          <%= f.submit "Save", :class => 'btn btn-default btn-xs'%>
-         <%end%>                                        
+         <%end%>
+         </span>                                        
         </li>                  
         </ul>          
         <%end%>        
