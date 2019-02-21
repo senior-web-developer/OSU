@@ -54,7 +54,6 @@ class OrdersController < ShopifyApp::AuthenticatedController
   def update
     cur_tags = []
     new_tags = []
-    temp_tags = []
     
     @order = ShopifyAPI::Order.find(params[:id])
     
@@ -74,9 +73,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
           end  
 
       end
-      
-      
-        
+
       @order.save
       respond_to do |format|
         format.html { redirect_to orders_url, notice: 'Order status was successfully updated..'}
