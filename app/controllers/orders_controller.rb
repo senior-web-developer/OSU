@@ -62,7 +62,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
       cur_tags = @order.tags.split(", ")
       new_tags = params[:tags].split(", ")        
 
-    if cur_tags != ""
+  
       for i in 0..[cur_tags].length-1         
              if cur_tags[i][0, 7] == "STATUS:"
                  cur_tags[i] = new_tags
@@ -72,10 +72,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
                  @order.tags = [cur_tags].join(", ")
              end        
       end
-    else
-      cur_tags = [cur_tags] + [new_tags]
-      @order.tags = [cur_tags].join(", ")
-    end
+   
 
     @order.save
       respond_to do |format|
