@@ -44,9 +44,9 @@
         <%= form_for order, :url =>{:action => "update", :id => order} do |f| %>
          <select id="do" name="tags" class='form-control col-md-3'> 
           <option disabled="" selected="" value="">Select Status</option> 
-          <% array = Array.new(order.tags.split(", ")) %>              
           <% if order.tags != "" %>
-          <option value="<%= array.first %>"> <%=order.tags.first %></option>
+          <% array = Array.new(order.tags.split(", ")) %> 
+          <option value="<%= array.first %>" selected> <%=array.first %></option>
           <%end%>     
           <option value="STATUS:Unfulfilled">STATUS:Unfulfilled</option>  
           <option value="STATUS:Fulfilled">STATUS:Fulfilled</option>    
