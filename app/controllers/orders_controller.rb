@@ -59,14 +59,11 @@ class OrdersController < ShopifyApp::AuthenticatedController
     @order = ShopifyAPI::Order.find(params[:id])
     
     if params[:id].present?
+      cur_tag = @order.tags.split(", ")
+      new_tag = params[:tags].split(", ")        
 
-    cur_tag = @order.tags | split(", ")
-    new_tag = params[:tags] | split(", ")
-    updated_tags = cur_tag | concat: new_tag
-    updated_tags | join: ", "     
-
-      #cur_tag = [cur_tag] + [new_tag]
-      #@order.tags = cur_tag  
+      cur_tag = [cur_tag] + [new_tag]
+      @order.tags = cur_tag.join(", ")  
         
       @order.save
       respond_to do |format|
