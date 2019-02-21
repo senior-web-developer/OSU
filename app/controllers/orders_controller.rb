@@ -70,10 +70,10 @@ class OrdersController < ShopifyApp::AuthenticatedController
       #for i in 0..cur_array_list.length
       
 
-        if 1
+  
           cur_tags = [cur_tags] + [new_tags]
           @order.tags = cur_tags        
-        end
+    
 
       #end
 
