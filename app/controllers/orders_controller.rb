@@ -59,8 +59,8 @@ class OrdersController < ShopifyApp::AuthenticatedController
     @order = ShopifyAPI::Order.find(params[:id])
     
     if params[:id].present?
-      cur_tag = @order.tags.split(", ").map
-      new_tag = params[:tags].split(", ").map        
+      cur_tag = @order.tags.split(", ")
+      new_tag = params[:tags].split(", ")        
 
       cur_tag = [cur_tag] + [new_tag]
       @order.tags = cur_tag.join(", ")  
