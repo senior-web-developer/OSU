@@ -64,7 +64,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
 
     if cur_tags != ""
       for i in 0..[cur_tags].length         
-             puts "Current Tag:" cur_tags[i]  
+             puts "Current Tag:"+cur_tags[i]  
       end
     else
       cur_tags = [cur_tags] + [new_tags]
