@@ -57,11 +57,15 @@ class OrdersController < ShopifyApp::AuthenticatedController
     #my_hash = {}
     
     @order = ShopifyAPI::Order.find(params[:id])
-    cur_tag = @order.tags    
-    cur_tag.split(',').map
-    new_tag = params[:tags]
     
     if params[:id].present?
+      
+    cur_tag = @order.tags | split(", ")
+    new_tag = params[:tags] | split(", ")
+    updated_tags = cur_tag | concat: new_tag
+    updated_tags | join: ", " 
+
+    
 
       cur_tag = [cur_tag] + [new_tag]
       @order.tags = cur_tag  
