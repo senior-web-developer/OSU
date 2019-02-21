@@ -67,7 +67,8 @@ class OrdersController < ShopifyApp::AuthenticatedController
         if cur_tags == nil
               cur_tags = [cur_tags] + [new_tags]
               @order.tags = cur_tags.join(", ")
-          elsif cur_tags[i][1, 7] == 'STATUS:'
+          else
+             if cur_tags[i][1, 7] == 'STATUS:'
               cur_tags[i] = new_tags
               @order.tags = [cur_tags].join(", ")
               else       
