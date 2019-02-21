@@ -67,14 +67,14 @@ class OrdersController < ShopifyApp::AuthenticatedController
       
       cur_array_list = [cur_tags]
 
-      for i in 0..cur_array_list.length
-                
-        if i == cur_array_list.length
+      #for i in 0..cur_array_list.length
+
+        if cur_array_list.length == cur_array_list.length
         cur_tags = [cur_tags] + [new_tags]
         @order.tags = cur_tags
         end
 
-      end
+      #end
 
        
         
