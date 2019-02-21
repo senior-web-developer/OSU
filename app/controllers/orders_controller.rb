@@ -9,6 +9,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
     @products = ShopifyAPI::Product.find(:all)
     #@orders = ShopifyAPI::Order.find(:all, params: { created_at_min: (Time.now - 30.days), limit: 250 })
     #@line_items = ShopifyAPI::LineItem.find(:all)
+    puts "Current Tag:"
   end
 
   # GET /orders/1
