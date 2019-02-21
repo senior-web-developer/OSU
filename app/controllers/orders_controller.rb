@@ -70,7 +70,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
       #for i in 0..cur_array_list.length
        length_array = 0
 
-       cur_tags.each do |i|
+       [cur_tags].each do |i|
         length_array = length_array + i 
        end
 
