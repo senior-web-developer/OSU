@@ -43,19 +43,10 @@
         <td>
         <%= form_for order, :url =>{:action => "update", :id => order} do |f| %>
          <select id="do" name="tags" class='form-control col-md-3'> 
-          <option disabled="" selected="" value="">Select Status</option>
-
-          <% case order.tags %>           
-            <% when 'STATUS:Unfulfilled' %>
-            <option value="<%= order.tags %>" selected><%= order.tags %></option>
-            <% when 'STATUS:Fulfilled' %>
-            <option value="<%= order.tags %>" selected><%= order.tags %></option>
-            <% when 'STATUS:PartiallyFulfilled' %>
-            <option value="<%= order.tags %>" selected><%= order.tags %></option>
-            <% when 'STATUS:PaymentRecieved'%>
-            <option value="<%= order.tags %>" selected><%= order.tags %></option>            
-          <%end%>         
-                 
+          <option disabled="" selected="" value="">Select Status</option>                
+          <% if order.tags != "" %>
+          <option value="<%=order.tags.first %>"> <%=order.tags.first %></option>
+          <%end%>     
           <option value="STATUS:Unfulfilled">STATUS:Unfulfilled</option>  
           <option value="STATUS:Fulfilled">STATUS:Fulfilled</option>    
           <option value="STATUS:PartiallyFulfilled">STATUS:PartiallyFulfilled</option>  

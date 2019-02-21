@@ -62,16 +62,15 @@ class OrdersController < ShopifyApp::AuthenticatedController
     new_tag = params[:tags]
     
     if params[:id].present?
-            
+
       cur_tag = [cur_tag] + [new_tag]
       @order.tags = cur_tag  
         
       @order.save
       respond_to do |format|
         format.html { redirect_to orders_url, notice: 'Order status was successfully updated..'}
-        format.json { head :no_content }
-      
-    end
+        format.json { head :no_content }      
+      end
     end
 
   end
