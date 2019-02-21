@@ -74,7 +74,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
         length_array = length_array + i 
        end
 
-        if cur_tags.length_array == cur_tags.length_array
+        if length_array == length_array
           cur_tags = [cur_tags] + [new_tags]
           @order.tags = cur_tags
         else
