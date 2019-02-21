@@ -54,16 +54,25 @@ class OrdersController < ShopifyApp::AuthenticatedController
   def update
     cur_tags = []
     new_tags = []
+    temp_tags = []
     
     @order = ShopifyAPI::Order.find(params[:id])
     
     if params[:id].present?
+
       cur_tags = @order.tags.split(", ")
       new_tags = params[:tags].split(", ")        
 
-      if [cur_tags].length == [cur_tags].length
-      cur_tags = [cur_tags] + [new_tags]
-      @order.tags = cur_tags.join(", ")
+      for i in 0..[cur_tags].length
+ 
+        if cur_tags[0, 7] == 'STATUS:'
+          cur_tags[i] = new_tags
+          @order.tags = cur_tags.join(", ")
+          else       
+          cur_tags = [cur_tags] + [new_tags]
+          @order.tags = cur_tags.join(", ")
+          end  
+
       end
       
       
