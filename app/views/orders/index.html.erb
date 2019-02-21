@@ -46,7 +46,7 @@
           <option disabled="" selected="" value="">Select Status</option> 
           <% if order.tags != "" %>
           <% array = Array.new(order.tags.split(", ")) %> 
-          <option value="<%= array.first %>" selected> <%=array.first %></option>
+          <option value="<%= array.last %>" selected> <%=array.last %></option>
           <%end%>     
           <option value="STATUS:Unfulfilled">STATUS:Unfulfilled</option>  
           <option value="STATUS:Fulfilled">STATUS:Fulfilled</option>    
