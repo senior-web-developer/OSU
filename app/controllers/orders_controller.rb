@@ -9,7 +9,6 @@ class OrdersController < ShopifyApp::AuthenticatedController
     @products = ShopifyAPI::Product.find(:all)
     #@orders = ShopifyAPI::Order.find(:all, params: { created_at_min: (Time.now - 30.days), limit: 250 })
     #@line_items = ShopifyAPI::LineItem.find(:all)
-    puts "Current Tag:"
   end
 
   # GET /orders/1
@@ -65,7 +64,13 @@ class OrdersController < ShopifyApp::AuthenticatedController
 
     if cur_tags != ""
       for i in 0..[cur_tags].length         
-             puts "Current Tag:" 
+             if cur_tags[i][0, 6] == "STATUS:"
+                 cur_tags[i] = new_tags
+                 @order.tags = [cur_tags].join(", ")
+                else       
+                 cur_tags = [cur_tags] + [new_tags]
+                 @order.tags = [cur_tags].join(", ")
+             end        
       end
     else
       cur_tags = [cur_tags] + [new_tags]
