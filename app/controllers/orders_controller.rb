@@ -64,11 +64,11 @@ class OrdersController < ShopifyApp::AuthenticatedController
       cur_tags = @order.tags.split(", ")
       new_tags = params[:tags].split(", ")        
       
-      new_array = [cur_tags]
+      cur_array_list = [cur_tags]
 
       for i in 0..new_array.length
-        cur_tag = [cur_tag] + [new_tag]
-        @order.tags = cur_tag.join(", ")
+        cur_tag = [cur_tags] + [new_tags]
+        @order.tags = cur_tags
       end
 
        
