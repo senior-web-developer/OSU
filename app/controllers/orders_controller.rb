@@ -65,7 +65,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
       cur_tags = @order.tags.split(", ")
       new_tags = params[:tags].split(", ")        
       
-      cur_array_list = [cur_tags]
+      cur_array_list = cur_tags
 
       #for i in 0..cur_array_list.length
 
