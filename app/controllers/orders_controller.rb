@@ -63,7 +63,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
       new_tags = "STATUS: Payment Not Received.."
 
       for i in 0..cur_tags.length-1         
-             if cur_tags[i][0, 6] == "STATUS:"
+             if cur_tags[i][0, 7] == "STATUS:"
                  cur_tags[i] = new_tags
                  @order.tags = cur_tags
                 else       
