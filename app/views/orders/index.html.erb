@@ -66,7 +66,7 @@
         <span class="glyphicon glyphicon glyphicon-bell" title="This order has notes.."></span>
         <%end%>
         <span style="float:right; display:inline-block;">
-        <%= form_for order, :url =>{:action => "create", :id => order}, :class => "btn-text-right" do |f| %>
+        <%= form_for order, :url =>{:action => "update", :id => order}, :class => "btn-text-right" do |f| %>
         <select id="do" name="variant_tag" class='form-control col-md-1'>
           <option disabled="" selected="" value="">Select Status</option>
           <% if order.tags != "" %>
