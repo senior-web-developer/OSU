@@ -46,7 +46,7 @@
           <option disabled="" selected="" value="">Select Status</option> 
           <% if order.tags != "" %>
           <% array = Array.new(order.tags.split(", ")) %> 
-          <option value="<%= array.first %>" selected> <%=array.first %></option>
+          <option value="<%= array.last %>" selected> <%=array.last %></option>
           <%end%>     
           <option value="STATUS:Unfulfilled">STATUS:Unfulfilled</option>  
           <option value="STATUS:Fulfilled">STATUS:Fulfilled</option>    
@@ -71,7 +71,7 @@
           <option disabled="" selected="" value="">Select Status</option>
           <% if order.tags != "" %>
           <% array = Array.new(order.tags.split(", ")) %> 
-          <option value="<%= array.last %>" selected> <%=array.last %></option>
+          <option value="<%= array.first %>" selected> <%=array.first %></option>
           <%end%>          
           <option value="Delayed:Fabric unavailable-<%= item.product_id %>">Delayed:Fabric unavailable</option> 
           <option value="Delayed:Fabric ordered from mill-<%= item.product_id %>">Delayed:Fabric ordered from mill</option>
