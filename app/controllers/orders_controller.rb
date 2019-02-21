@@ -71,7 +71,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
        length_array = 0
 
        cur_tags.each do |i|
-        length_array + = i 
+        length_array = length_array + i 
        end
 
         if cur_tags.length_array == cur_tags.length_array
