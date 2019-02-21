@@ -54,6 +54,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
   def update
     cur_tags = []
     new_tags = []
+    temp_tags = []
     #cur_tag = [cur_tag] + [new_tag]
     #@order.tags = cur_tag.join(", ")
     
@@ -67,8 +68,12 @@ class OrdersController < ShopifyApp::AuthenticatedController
       cur_array_list = [cur_tags]
 
       for i in 0..cur_array_list.length
+                
+        if i == cur_array_list.length
         cur_tags = [cur_tags] + [new_tags]
         @order.tags = cur_tags
+        end
+
       end
 
        
