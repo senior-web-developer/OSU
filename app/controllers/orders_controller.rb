@@ -62,7 +62,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
       cur_tags = [@order.tags].split(", ")
       new_tags = params[:tags]        
     
-      if cur_tags != ""      
+      if cur_tags == ""      
         cur_tags = [cur_tags] + [new_tags]
         @order.tags = cur_tags
        else
