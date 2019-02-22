@@ -52,15 +52,14 @@ class OrdersController < ShopifyApp::AuthenticatedController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
+    @order = ShopifyAPI::Order.find(params[:id])
     cur_tags = []
     new_tags = []
-    
-    @order = ShopifyAPI::Order.find(params[:id])
-    
+
     if params[:id].present?
 
       cur_tags = @order.tags.split(", ")
-      new_tags = params[:tags]
+      new_tags = params[:tags].split(", ")
 
       for i in 0..cur_tags.length-1        
              if cur_tags[i][0, 6] == "STATUS"
