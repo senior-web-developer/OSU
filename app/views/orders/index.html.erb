@@ -79,13 +79,13 @@
           <option disabled="" selected="" value="">Select Status</option>
           <% if order.tags != "" %>
           <% case order.tags %>           
-            <% when 'Delayed:Fabric-unavailable-<%= item.product_id %>' %>
+            <% when "Delayed:Fabric-unavailable-#{item.product_id}" %>
             <option value="<%= order.tags %>" selected><%= order.tags %></option>
-            <% when 'Delayed:Fabric-ordered-from-mill-<%= item.product_id %>' %>
+            <% when "Delayed:Fabric-ordered-from-mill-#{item.product_id}" %>
             <option value="<%= order.tags %>" selected><%= order.tags %></option>
-            <% when 'Delayed:Awaiting-info-from-customer-<%= item.product_id %>' %>
+            <% when "Delayed:Awaiting-info-from-customer-#{item.product_id}" %>
             <option value="<%= order.tags %>" selected><%= order.tags %></option>
-            <% when 'Delayed:Other-reason'%>
+            <% when "Delayed:Other-reason-#{item.product_id}" %>
             <option value="<%= order.tags %>" selected><%= order.tags %></option>            
            <%end%>
           <%end%>          
