@@ -52,19 +52,20 @@ class OrdersController < ShopifyApp::AuthenticatedController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
-    @order = ShopifyAPI::Order.find(params[:id])
     cur_tags = []
     new_tags = []
-
+    
+    @order = ShopifyAPI::Order.find(params[:id])
+    
     if params[:id].present?
 
       cur_tags = @order.tags.split(", ")
-      new_tags = params[:tags]
+      new_tags = params[:tags].split(", ")
 
       cur_tags = [cur_tags] + [new_tags]
-      @order.tags = cur_tags
+      @order.tags = [cur_tags] 
 
-      @order.save
+    @order.save
       respond_to do |format|
         format.html { redirect_to orders_url, notice: 'Order status was successfully updated..'}
         format.json { head :no_content }      
