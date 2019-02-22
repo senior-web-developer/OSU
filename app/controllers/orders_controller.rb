@@ -55,34 +55,30 @@ class OrdersController < ShopifyApp::AuthenticatedController
     @order = ShopifyAPI::Order.find(params[:id])
 
     cur_tags = []
-    new_tags = []
-    temp_array = []   
+    new_tags = [] 
     
     if params[:id].present?
 
       cur_tags = [@order.tags]
       cur_tags.split(", ").map
-      new_tags = params[:tags]        
-
+      app_tag = params[:tags]        
+    
       for i in 0..cur_tags.length-1
-
-        if cur_tags[i][0, 7] == "Status:"
-          cur_tags[i] = [new_tags]
-          @order.tags = cur_tags.join(", ")
-        #else
-          #cur_tags = [cur_tags] + [new_tags]
-          #@order.tags = cur_tags.join(", ")              
+     
+        if cur_tags[i][0,7] == "Status:"
+        else
+        new_tags_len = new_tags.length
+        new_tags[new_tags_len] = cur_tags[i]
         end
+      end #end for
 
-        #if cur_tags[i][0, 8] == "Delayed:"
-          ##cur_tags[i] = [new_tags] 
-         # @order.tags = cur_tags.join(", ")
-        #else
-          #cur_tags = [cur_tags] + [new_tags]
-          #@order.tags = cur_tags.join(", ")              
-        #end
+       new_tags_len = new_tags.length
+       new_tags[new_tags_len] = app_tag
 
-      end
+      for i in 0..new_tags.length-1
+        cur_tags = [cur_tags] + new_tags[i]
+        @order.tags = cur_tags.joint(",") 
+      end   #End For
 
     @order.save
       respond_to do |format|
