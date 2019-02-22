@@ -65,11 +65,10 @@ class OrdersController < ShopifyApp::AuthenticatedController
       for i in 0..(cur_tags.length)-1         
              if cur_tags[i][0, 6] == "STATUS"
                  cur_tags[i] = new_tags
-                 @order.tags = cur_tags
-                else       
-                 cur_tags = [cur_tags] + [new_tags]
-                 @order.tags = cur_tags
-             end        
+                 @order.tags = cur_tags                
+             end 
+             cur_tags = [cur_tags] + [new_tags]
+             @order.tags = cur_tags       
       end
 
     @order.save
