@@ -51,25 +51,30 @@ class OrdersController < ShopifyApp::AuthenticatedController
 
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
-  def update   
-    @order = ShopifyAPI::Order.find(params[:id])
+  def update
     cur_tags = []
     new_tags = []
-    cur_tags = @order.tags    
-    cur_tags.split(',')
-    new_tags = params[:tags]
+    
+    @order = ShopifyAPI::Order.find(params[:id])
     
     if params[:id].present?
 
-      for i in 0..[cur_tags].length-1
-        if cur_tags[i][0, 6] == "STATUS"
-          cur_tags[i] = new_tags
-          @order.tags = cur_tags
-        else
-          cur_tags = [cur_tags] + [new_tags]
-          @order.tags = cur_tags
-        end
+      cur_tags = @order.tags
+      cur_tags.split(", ")
+      new_tags = params[:tags]     
+
+  
+      for i in 0..[cur_tags].length-1         
+             if cur_tags[i][0, 7] == "STATUS:"
+                 cur_tags[i] = new_tags
+                 @order.tags = cur_tags
+                else       
+                 cur_tags = [cur_tags] + [new_tags]
+                 @order.tags = [cur_tags
+             end        
       end
+   
+
 
     @order.save
       respond_to do |format|
@@ -77,6 +82,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
         format.json { head :no_content }      
       end
     end
+
   end
 
   # DELETE /orders/1
