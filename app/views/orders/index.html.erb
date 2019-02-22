@@ -45,8 +45,8 @@
          <select id="do" name="tags" class='form-control col-md-3'> 
           <option disabled="" selected="" value="">Select Status</option> 
           <% if order.tags != "" %>
-          <% array = Array.new(order.tags.split(", ")) %> 
-          <option value="<%= array.last %>" selected> <%=array.last %></option>
+          
+          <option value="<%= order.tags %>" selected> <%= order.tags %></option>
           <%end%>     
           <option value="STATUS:Unfulfilled">STATUS:Unfulfilled</option>  
           <option value="STATUS:Fulfilled">STATUS:Fulfilled</option>    
