@@ -79,20 +79,20 @@
           <option disabled="" selected="" value="">Select Status</option>
           <% if order.tags != "" %>
           <% case order.tags %>           
-            <% when 'Delayed:Fabric-unavailable' %>
+            <% when 'Delayed:Fabric-unavailable-<%= item.product_id %>' %>
             <option value="<%= order.tags %>" selected><%= order.tags %></option>
-            <% when 'Delayed:Fabric-ordered-from-mill' %>
+            <% when 'Delayed:Fabric-ordered-from-mill-<%= item.product_id %>' %>
             <option value="<%= order.tags %>" selected><%= order.tags %></option>
-            <% when 'Delayed:Awaiting-info-from-customer' %>
+            <% when 'Delayed:Awaiting-info-from-customer-<%= item.product_id %>' %>
             <option value="<%= order.tags %>" selected><%= order.tags %></option>
             <% when 'Delayed:Other-reason'%>
             <option value="<%= order.tags %>" selected><%= order.tags %></option>            
            <%end%>
           <%end%>          
-          <option value="Delayed:Fabric-unavailable">Delayed:Fabric unavailable</option> 
-          <option value="Delayed:Fabric-ordered-from-mill">Delayed:Fabric ordered from mill</option>
-          <option value="Delayed:Awaiting-info-from-customer">Delayed:Awaiting info from customer</option>         
-          <option value="Delayed:Other-reason">Delayed:Other reason</option>
+          <option value="Delayed:Fabric-unavailable-<%= item.product_id %>">Delayed:Fabric unavailable</option> 
+          <option value="Delayed:Fabric-ordered-from-mill-<%= item.product_id %>">Delayed:Fabric ordered from mill</option>
+          <option value="Delayed:Awaiting-info-from-customer-<%= item.product_id %>">Delayed:Awaiting info from customer</option>         
+          <option value="Delayed:Other-reason-<%= item.product_id %>">Delayed:Other reason</option>
          </select> 
          <%= f.submit "Save", :class => 'btn btn-default btn-xs'%>
          <%end%>
