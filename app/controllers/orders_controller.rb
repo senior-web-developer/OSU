@@ -29,7 +29,24 @@ class OrdersController < ShopifyApp::AuthenticatedController
   # POST /orders
   # POST /orders.json
   def create
-    
+    cur_tag = []
+    new_tag = []
+    @order = ShopifyAPI::Order.find(params[:id])
+    cur_tag = @order.tags    
+    cur_tag.split(',').map
+    var_tag = params[:variant_tag]
+
+    if params[:id].present?      
+      #@order.tags = tags.uniq.join(',')
+      cur_tag = [cur_tag] + [var_tag]
+      @order.tags = cur_tag     
+
+      @order.save
+      respond_to do |format|
+        format.html { redirect_to orders_url, notice: 'Variant product status was successfully updated..' }
+        format.json { head :no_content }
+      end
+    end            
   end
 
   # PATCH/PUT /orders/1
@@ -47,20 +64,20 @@ class OrdersController < ShopifyApp::AuthenticatedController
       cur_tags.split(", ").map
       new_tags = params[:tags]        
 
-      for i in 0..cur_tags.length-1
-
-        if cur_tags[i][0, 6] == "Delayed:"
+      for i in 0..cur_tags.length-1                   
+        if cur_tags[i][0, 6] == "STATUS"
+          cur_tags[i] = new_tags
+          @order.tags = cur_tags.join(",")
+        elsif cur_tags[i][0, 8] == "Delayed:"
           cur_tags[i] = new_tags
           #cur_tags = temp_array 
           @order.tags = cur_tags.join(",")
 
-          
-
+        end
         else
           cur_tags = [cur_tags] + [new_tags]
           @order.tags = cur_tags.join(",")              
         end
-
       end
 
     @order.save
