@@ -36,16 +36,10 @@ class OrdersController < ShopifyApp::AuthenticatedController
     cur_tag.split(',').map
     var_tag = params[:variant_tag]
 
-    for i in 0..cur_tag.length-1                   
-      if cur_tag[i][0, 8] == "Delayed:"
-        cur_tag[i] = new_tag
-        #cur_tags = temp_array 
-        @order.tags = cur_tag.join(",")
-      else
-        cur_tag = [cur_tag] + [new_tag]
-        @order.tags = cur_tag.join(",")              
-      end
-    end     
+    if params[:id].present?      
+      #@order.tags = tags.uniq.join(',')
+      cur_tag = [cur_tag] + [var_tag]
+      @order.tags = cur_tag     
 
       @order.save
       respond_to do |format|
@@ -70,11 +64,17 @@ class OrdersController < ShopifyApp::AuthenticatedController
       cur_tags.split(", ").map
       new_tags = params[:tags]        
 
-      for i in 0..cur_tags.length-1                   
+      for i in 0..cur_tags.length-1 
+
         if cur_tags[i][0, 6] == "STATUS"
           cur_tags[i] = new_tags
           #cur_tags = temp_array 
           @order.tags = cur_tags.join(",")
+          elsif cur_tag[i][0, 8] == "Delayed:"
+            cur_tag[i] = new_tag
+            #cur_tags = temp_array 
+            @order.tags = cur_tag.join(",")
+          end          
         else
           cur_tags = [cur_tags] + [new_tags]
           @order.tags = cur_tags.join(",")              
