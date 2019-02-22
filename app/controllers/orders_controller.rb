@@ -60,21 +60,19 @@ class OrdersController < ShopifyApp::AuthenticatedController
     if params[:id].present?
 
       cur_tags = [@order.tags]
-      cur_tags.split(", ")
+      temp_array = cur_tags.split(", ")
       new_tags = params[:tags]        
 
-                for i in 0..cur_tags.length-1                   
-                  if cur_tags[i][0, 6] == "STATUS"
-                    cur_tags[i] = new_tags
-                    @order.tags = cur_tags.join(", ") 
+                for i in 0..temp_array.length-1                   
+                  if temp_array[i][0, 6] == "STATUS"
+                    temp_array[i] = new_tags
+                    cur_tags = temp_array 
+                    @order.tags =cur_tags.join(", ")
                   else
                     cur_tags = [cur_tags] + [new_tags]
                     @order.tags = cur_tags.join(", ")              
                   end
-                end        
-
-
-
+                end
     @order.save
       respond_to do |format|
         format.html { redirect_to orders_url, notice: 'Order status was successfully updated..'}
