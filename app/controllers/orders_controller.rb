@@ -31,25 +31,22 @@ class OrdersController < ShopifyApp::AuthenticatedController
   def create
     cur_tag = []
     new_tag = []
-    temp_array = []   
-    
-    if params[:id].present?
+    @order = ShopifyAPI::Order.find(params[:id])
+    cur_tag = @order.tags    
+    cur_tag.split(',').map
+    var_tag = params[:variant_tag]
 
-      cur_tag = [@order.tags]
-      cur_tag.split(", ")
-      new_tag = params[:tags]        
+    if params[:id].present?      
+      #@order.tags = tags.uniq.join(',')
+      cur_tag = [cur_tag] + [var_tag]
+      @order.tags = cur_tag.join(",")     
 
-     
-          cur_tag = [cur_tag] + [new_tags]
-          @order.tags = cur_tag.join(",")              
-   
-
-    @order.save
+      @order.save
       respond_to do |format|
-        format.html { redirect_to orders_url, notice: 'Order status was successfully updated..'}
-        format.json { head :no_content }      
+        format.html { redirect_to orders_url, notice: 'Variant product status was successfully updated..' }
+        format.json { head :no_content }
       end
-    end    
+    end            
   end
 
   # PATCH/PUT /orders/1
@@ -64,11 +61,11 @@ class OrdersController < ShopifyApp::AuthenticatedController
     if params[:id].present?
 
       cur_tags = [@order.tags]
-      cur_tags.split(", ")
+      cur_tags.split(", ").map
       new_tags = params[:tags]        
 
       for i in 0..cur_tags.length-1                   
-        if cur_tags[i][0, 7] == "STATUS:"
+        if cur_tags[i][0, 6] == "STATUS"
           cur_tags[i] = new_tags
           #cur_tags = temp_array 
           @order.tags = cur_tags.join(",")
