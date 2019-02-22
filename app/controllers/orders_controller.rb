@@ -59,8 +59,8 @@ class OrdersController < ShopifyApp::AuthenticatedController
     
     if params[:id].present?
 
-      cur_tags = [@order.tags]
-      cur_tags.split(", ").map
+      temp_tags = [@order.tags]
+      cur_tags = cur_tags.split(", ").map
       app_tag = params[:tags]        
     
       for i in 0..cur_tags.length-1
@@ -68,7 +68,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
         if cur_tags[i][0,7] == "Status:"
         else
         new_tags_len = new_tags.length
-        new_tags[new_tags_len] = cur_tags[i].join(", ")
+        new_tags[new_tags_len] = cur_tags[i]
         end #end if
       end #end for
 
@@ -76,7 +76,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
        new_tags[new_tags_len] = app_tag
 
       for i in 0..new_tags.length-1
-        cur_tags = new_tags[i].join(", ")
+        cur_tags = new_tags[i]
         @order.tags = cur_tags 
       end   #End For
 
