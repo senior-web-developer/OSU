@@ -36,7 +36,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
     cur_tag.split(',').map
     var_tag = params[:variant_tag]
 
-    for i in 0..cur_tags.length-1                   
+    for i in 0..cur_tag.length-1                   
       if cur_tag[i][0, 8] == "Delayed:"
         cur_tag[i] = new_tag
         #cur_tags = temp_array 
