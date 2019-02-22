@@ -77,7 +77,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
 
       for i in 0..new_tags.length-1
         cur_tags = new_tags[i]
-        @order.tags = cur_tags.joint(",") 
+        @order.tags = cur_tags.join(",") 
       end   #End For
 
     @order.save
