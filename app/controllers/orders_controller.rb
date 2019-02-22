@@ -70,7 +70,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
                  @order.tags = cur_tags
                 else       
                  cur_tags = [cur_tags] + [new_tags]
-                 @order.tags = [cur_tags
+                 @order.tags = cur_tags
              end        
       end
    
