@@ -29,26 +29,20 @@ class OrdersController < ShopifyApp::AuthenticatedController
   # POST /orders
   # POST /orders.json
   def create
-    cur_tags = []
-    new_tags = []
+    cur_tag = []
+    new_tag = []
     temp_array = []   
     
     if params[:id].present?
 
-      cur_tags = [@order.tags]
-      cur_tags.split(", ")
-      new_tags = params[:var_tags]        
+      cur_tag = [@order.tags]
+      cur_tag.split(", ")
+      new_tag = params[:tags]        
 
-      for i in 0..cur_tags.length-1                   
-        if cur_tags[i][0, 8] == "Delayed:"
-          cur_tags[i] = new_tags
-          #cur_tags = temp_array 
-          @order.tags = cur_tags.join(",")
-        else
-          cur_tags = [cur_tags] + [new_tags]
-          @order.tags = cur_tags.join(",")              
-        end
-      end
+     
+          cur_tag = [cur_tag] + [new_tags]
+          @order.tags = cur_tag.join(",")              
+   
 
     @order.save
       respond_to do |format|
