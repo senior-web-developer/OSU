@@ -59,11 +59,11 @@ class OrdersController < ShopifyApp::AuthenticatedController
     
     if params[:id].present?
 
-      cur_tags = @order.tags.split(", ")
+      [cur_tags] = @order.tags.split(", ")
       new_tags = params[:tags]        
 
     
-      for i in 0..([cur_tags].length)-1         
+      for i in 0..(cur_tags.length)-1         
              if cur_tags[i][0, 6] == "STATUS"
                  cur_tags[i] = new_tags
                  @order.tags = [cur_tags].join(", ")
