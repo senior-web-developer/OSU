@@ -64,13 +64,10 @@ class OrdersController < ShopifyApp::AuthenticatedController
       new_tags = params[:tags]     
 
   
-      for i in 0..[cur_tags].length         
+      for i in 0..[cur_tags].length-1         
              if cur_tags[i][0, 7] == "STATUS:"
                  cur_tags[i] = new_tags
-                 @order.tags = cur_tags
-                else       
-                 cur_tags = [cur_tags] + [new_tags]
-                 @order.tags = cur_tags
+                 @order.tags = cur_tags.join(", ")
              end        
       end
    
@@ -78,7 +75,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
 
     @order.save
       respond_to do |format|
-        format.html { redirect_to orders_url, notice: 'Order status was successfully updated..'}
+        format.html { redirect_to orders_url, notice: 'Order status was successfully updated..'+[cur_tags].length}
         format.json { head :no_content }      
       end
     end
