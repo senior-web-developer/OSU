@@ -37,7 +37,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
 
       cur_tags = [@order.tags]
       cur_tags.split(", ")
-      new_tags = params[:tags]        
+      new_tags = params[:var_tags]        
 
       for i in 0..cur_tags.length-1                   
         if cur_tags[i][0, 8] == "Delayed:"

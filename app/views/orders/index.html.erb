@@ -67,7 +67,7 @@
         <%end%>
         <span style="float:right; display:inline-block;">
         <%= form_for order, :url =>{:action => "create", :id => order}, :class => "btn-text-right" do |f| %>
-        <select id="do" name="tags" class='form-control col-md-1'>
+        <select id="do" name="var_tags" class='form-control col-md-1'>
           <option disabled="" selected="" value="">Select Status</option>
           <% if order.tags != "" %>
           <% array = Array.new(order.tags.split(", ")) %> 
