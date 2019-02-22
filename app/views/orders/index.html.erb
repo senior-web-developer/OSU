@@ -44,17 +44,9 @@
         <%= form_for order, :url =>{:action => "update", :id => order} do |f| %>
          <select id="do" name="tags" class='form-control col-md-3'> 
           <option disabled="" selected="" value="">Select Status</option> 
-          <% if order.tags != "" %>          
-          <% case order.tags %>           
-            <% when 'STATUS:Unfulfilled' %>
-            <option value="<%= order.tags %>" selected><%= order.tags %></option>
-            <% when 'STATUS:Fulfilled' %>
-            <option value="<%= order.tags %>" selected><%= order.tags %></option>
-            <% when 'STATUS:PartiallyFulfilled' %>
-            <option value="<%= order.tags %>" selected><%= order.tags %></option>
-            <% when 'STATUS:PaymentRecieved'%>
-            <option value="<%= order.tags %>" selected><%= order.tags %></option>            
-           <%end%>
+          <% if order.tags != "" %>
+          
+          <option value="<%= order.tags %>" selected> <%= order.tags %></option>
           <%end%>     
           <option value="STATUS:Unfulfilled">STATUS:Unfulfilled</option>  
           <option value="STATUS:Fulfilled">STATUS:Fulfilled</option>    
@@ -78,16 +70,8 @@
         <select id="do" name="variant_tag" class='form-control col-md-1'>
           <option disabled="" selected="" value="">Select Status</option>
           <% if order.tags != "" %>
-          <% case order.tags %>           
-            <% when "Delayed:Fabric-unavailable" %>
-            <option value="<%= order.tags %>" selected><%= order.tags %></option>
-            <% when "Delayed:Fabric-ordered-from-mill" %>
-            <option value="<%= order.tags %>" selected><%= order.tags %></option>
-            <% when "Delayed:Awaiting-info-from-customer" %>
-            <option value="<%= order.tags %>" selected><%= order.tags %></option>
-            <% when "Delayed:Other-reason" %>
-            <option value="<%= order.tags %>" selected><%= order.tags %></option>            
-           <%end%>
+          <% array = Array.new(order.tags.split(", ")) %> 
+          <option value="<%= array.first %>" selected> <%=array.first %></option>
           <%end%>          
           <option value="Delayed:Fabric-unavailable">Delayed:Fabric unavailable</option> 
           <option value="Delayed:Fabric-ordered-from-mill">Delayed:Fabric ordered from mill</option>
