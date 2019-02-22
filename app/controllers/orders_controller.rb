@@ -73,6 +73,15 @@ class OrdersController < ShopifyApp::AuthenticatedController
           cur_tags = [cur_tags] + [new_tags]
           @order.tags = cur_tags.join(", ")              
         end
+
+        if cur_tags[i][0, 8] == "Delayed:"
+          cur_tags[i] = [new_tags] 
+          @order.tags = cur_tags.join(", ")
+        else
+          cur_tags = [cur_tags] + [new_tags]
+          @order.tags = cur_tags.join(", ")              
+        end
+
       end
 
     @order.save
