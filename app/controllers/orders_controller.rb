@@ -52,10 +52,11 @@ class OrdersController < ShopifyApp::AuthenticatedController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
+    @order = ShopifyAPI::Order.find(params[:id])
+    
     cur_tags = []
     new_tags = []
-    
-    @order = ShopifyAPI::Order.find(params[:id])
+    temp_array = []   
     
     if params[:id].present?
 
@@ -67,10 +68,10 @@ class OrdersController < ShopifyApp::AuthenticatedController
                   if temp_array[i][0, 6] == "STATUS"
                     temp_array[i] = new_tags
                     cur_tags = temp_array 
-                    @order.tags =cur_tags.join(", ")
+                    @order.tags = cur_tags.join(",")
                   else
                     cur_tags = [cur_tags] + [new_tags]
-                    @order.tags = cur_tags.join(", ")              
+                    @order.tags = cur_tags.join(",")              
                   end
                 end
     @order.save
