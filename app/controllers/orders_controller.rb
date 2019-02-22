@@ -64,7 +64,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
       new_tags = params[:tags]     
 
   
-      for i in 0..cur_tags.length-1         
+      for i in 0..cur_tags.length         
              if cur_tags[i][0, 7] == "STATUS:"
                  cur_tags[i] = new_tags
                  @order.tags = cur_tags
