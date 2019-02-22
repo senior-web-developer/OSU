@@ -66,7 +66,9 @@ class OrdersController < ShopifyApp::AuthenticatedController
              if cur_tags[i][0, 6] == "STATUS"
                  cur_tags[i] = new_tags
                  @order.tags = cur_tags
-                
+                else       
+                 cur_tags = [cur_tags] + [new_tags]
+                 @order.tags = cur_tags
              end        
       end
 
