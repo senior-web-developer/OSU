@@ -73,10 +73,10 @@
           <% array = Array.new(order.tags.split(", ")) %> 
           <option value="<%= array.first %>" selected> <%=array.first %></option>
           <%end%>          
-          <option value="Delayed:Fabric unavailable-<%= item.product_id %>">Delayed:Fabric unavailable</option> 
-          <option value="Delayed:Fabric ordered from mill-<%= item.product_id %>">Delayed:Fabric ordered from mill</option>
-          <option value="Delayed:Awaiting info from customer-<%= item.product_id %>">Delayed:Awaiting info from customer</option>         
-          <option value="Delayed:Other reason-<%= item.product_id %>">Delayed:Other reason</option>
+          <option value="Delayed:Fabric-unavailable %= item.product_id %>">Delayed:Fabric unavailable</option> 
+          <option value="Delayed:Fabric-ordered-from-mill <%= item.product_id %>">Delayed:Fabric ordered from mill</option>
+          <option value="Delayed:Awaiting-info-from-customer <%= item.product_id %>">Delayed:Awaiting info from customer</option>         
+          <option value="Delayed:Other-reason <%= item.product_id %>">Delayed:Other reason</option>
          </select> 
          <%= f.submit "Save", :class => 'btn btn-default btn-xs'%>
          <%end%>
