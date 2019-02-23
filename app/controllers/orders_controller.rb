@@ -73,7 +73,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
           cur_tags[i] = app_tag
           @order.tags = cur_tags.join(", ")
         else
-          cur_tags = [cur_tags] + [app_tag]
+          cur_tags = [cur_tags] + app_tag
           @order.tags = cur_tags.join(", ")              
         end
 
