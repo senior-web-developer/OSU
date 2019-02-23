@@ -59,11 +59,11 @@ class OrdersController < ShopifyApp::AuthenticatedController
     updated_tags = []
     if params[:id].present?
 
-      temp_tags = "Status:TestingSuresh, ORDER_CANCELLED, Make_Order_Sheet, BLACKFRIDAY2018"
+      temp_tags = @order.tags
       cur_tags = temp_tags.split(",")
       
       #temp_app_tag = params[:tags] 
-      app_tag = "Status:TestingSuresh, ORDER_CANCELLED, Make_Order_Sheet, BLACKFRIDAY2018"
+      app_tag = "Status:TestingSuresh2"
       
     
       for i in 0..cur_tags.length-1
