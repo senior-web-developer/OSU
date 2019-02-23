@@ -56,7 +56,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
 
     cur_tags = []
     new_tags = [] 
-    
+    updated_tags = []
     if params[:id].present?
 
       temp_tags = "Status:TestingSuresh, ORDER_CANCELLED, Make_Order_Sheet, BLACKFRIDAY2018"
@@ -82,8 +82,9 @@ class OrdersController < ShopifyApp::AuthenticatedController
 
       for i in 0..new_tags.length-1
         cur_tags = new_tags[i]
-        @order.tags = [cur_tags].join(",") 
+        updated_tags = [cur_tags].join(",") 
       end   #End For
+      @order.tags = updated_tags
       
 
     @order.save
