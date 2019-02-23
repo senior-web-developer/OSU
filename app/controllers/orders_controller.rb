@@ -65,7 +65,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
     
       for i in 0..cur_tags.length-1
      
-        if cur_tags[i][0,7] == "Status:"
+        if cur_tags[i][0,6] == "Status:"
         else
         new_tags_len = new_tags.length
         new_tags[new_tags_len] = cur_tags[i]
