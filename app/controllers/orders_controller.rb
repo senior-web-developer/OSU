@@ -70,15 +70,16 @@ class OrdersController < ShopifyApp::AuthenticatedController
         new_tags_len = new_tags.length
         new_tags[new_tags_len] = cur_tags[i]
         end #end if
+
       end #end for
 
        new_tags_len = new_tags.length
-       new_tags[new_tags_len] = app_tag
+       new_tags[new_tags_len] = [app_tag].join(',')
 
       for i in 0..new_tags.length-1
         cur_tags = new_tags[i]
-        @order.tags = cur_tags 
       end   #End For
+      @order.tags = [cur_tags].join(',') 
 
     @order.save
       respond_to do |format|
