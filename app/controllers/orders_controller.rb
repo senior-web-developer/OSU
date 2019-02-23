@@ -59,13 +59,17 @@ class OrdersController < ShopifyApp::AuthenticatedController
     
     if params[:id].present?
 
-      temp_tags = @order.tags
+      temp_tags = "Status:TestingSuresh, ORDER_CANCELLED, Make_Order_Sheet, BLACKFRIDAY2018"
       cur_tags = temp_tags.split(",")
-      app_tag = params[:tags]        
+      
+      temp_app_tag = params[:tags] 
+      app_tag = temp_app_tag.join("")
+      
     
       for i in 0..cur_tags.length-1
      
         if cur_tags[i][0,7] == "Status:"
+          #nothing do here...Deleted exsiting status tag
         else
         new_tags_len = new_tags.length
         new_tags[new_tags_len] = cur_tags[i]
@@ -74,11 +78,11 @@ class OrdersController < ShopifyApp::AuthenticatedController
       end #end for
 
        new_tags_len = new_tags.length
-       new_tags[new_tags_len] = [app_tag].join(',')
+       new_tags[new_tags_len] = [app_tag].join(",")
 
       for i in 0..new_tags.length-1
         cur_tags = new_tags[i]
-        @order.tags = [cur_tags].join(',') 
+        @order.tags = [cur_tags].join(",") 
       end   #End For
       
 
