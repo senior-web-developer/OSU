@@ -68,16 +68,22 @@ class OrdersController < ShopifyApp::AuthenticatedController
     
       for i in 0..cur_tags.length-1
      
-        if cur_tags[i][0,7] != "Status:"
-        new_tags << cur_tags[i]
+        if cur_tags[i][0,7] == "Status:"
+        else
+        new_tags_len = new_tags.length
+        new_tags[new_tags_len] = cur_tags[i]
         end #end if
 
       end #end for
-       
-       new_tags << app_tag
 
+       new_tags_len = new_tags.length
+       new_tags[new_tags_len] = app_tag
+
+      for i in 0..new_tags.length-1
+        new_tags = new_tags[i]
+      end   #End For 
       
-      @order.tags = new_tags.join(",")     
+      @order.tags = new_tags.join(", ")     
       
 
     @order.save
