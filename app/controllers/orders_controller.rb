@@ -63,7 +63,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
       cur_tags = temp_tags.split(",")
       
       temp_app_tag = params[:tags] 
-      app_tag = temp_app_tag.join(",")
+      app_tag = [temp_app_tag].join(",")
       
     
       for i in 0..cur_tags.length-1
