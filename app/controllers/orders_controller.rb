@@ -59,13 +59,13 @@ class OrdersController < ShopifyApp::AuthenticatedController
     
     if params[:id].present?
 
-      temp_tags = @order.tags
+      temp_tags = "Status:Unfulfilled, ORDER_CANCELLED, Make_Order_Sheet, BLACKFRIDAY2018"
       cur_tags = temp_tags.split(",")
       app_tag = params[:tags]        
     
       for i in 0..cur_tags.length-1
      
-        if cur_tags[i][0,6] == "Status:"
+        if cur_tags[i][0,7] == "Status:"
         else
         new_tags_len = new_tags.length
         new_tags[new_tags_len] = cur_tags[i]
