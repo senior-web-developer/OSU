@@ -59,8 +59,8 @@ class OrdersController < ShopifyApp::AuthenticatedController
     updated_tags = []
     if params[:id].present?
 
-      #temp_tags = @order.tags
-      cur_tags = @order.tags
+      temp_tags = @order.tags
+      cur_tags = temp_tags.split(",").map(&:to_i)
       
       #temp_app_tag = params[:tags] 
       app_tag = params[:tags]
@@ -74,7 +74,8 @@ class OrdersController < ShopifyApp::AuthenticatedController
 
       end #end for
        
-      new_tags << app_tag
+       new_tags << app_tag
+
       
       @order.tags = new_tags.join(",")     
       
