@@ -60,7 +60,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
     if params[:id].present?
 
       temp_tags = @order.tags
-      cur_tags = temp_tags.split(",").map(&:to_s)
+      cur_tags = temp_tags.split(", ").map(&:to_s)
       
       #temp_app_tag = params[:tags] 
       app_tag = params[:tags]
@@ -71,17 +71,15 @@ class OrdersController < ShopifyApp::AuthenticatedController
 
         if cur_tags[i][0, 7] == "Status:"
           cur_tags[i] = app_tag
-          @order.tags = cur_tags.join(",")
+          @order.tags = cur_tags.join(", ")
         else
-          cur_tags = [cur_tags] + [new_tags]
-          @order.tags = cur_tags.join(",")              
+          cur_tags = [cur_tags] + [app_tag]
+          @order.tags = cur_tags.join(", ")              
         end
-
-        
 
       end
       
-      @order.tags = [new_tags].join(",")     
+      #@order.tags = [new_tags].join(",")     
       
 
     @order.save
