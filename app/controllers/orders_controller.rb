@@ -63,7 +63,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
       cur_tags = temp_tags.split(",")
       
       #temp_app_tag = params[:tags] 
-      app_tag = "Status:TestingSuresh2"
+      app_tag = params[:tags]
       
     
       for i in 0..cur_tags.length-1
@@ -81,10 +81,10 @@ class OrdersController < ShopifyApp::AuthenticatedController
        new_tags[new_tags_len] = [app_tag].join(",")
 
       for i in 0..new_tags.length-1
-        cur_tags = new_tags[i]
-        updated_tags = [cur_tags].join(",") 
+        cur_tags = [cur_tags] + [new_tags[i]]
+        #updated_tags = [cur_tags].join(",") 
       end   #End For
-      @order.tags = updated_tags
+      @order.tags = cur_tags
       
 
     @order.save
