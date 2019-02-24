@@ -55,7 +55,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
     updated_tags = []
     if params[:id].present?
 
-      cur_tags = @order.tags.split()
+      cur_tags = @order.tags.split(',')
       
       #temp_app_tag = params[:tags] 
       app_tag = params[:tags]
@@ -71,7 +71,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
        
       new_tags << app_tag
       
-      @order.tags = new_tags.join(", ")     
+      @order.tags = new_tags.join(',')     
 
     @order.save
       respond_to do |format|
@@ -91,7 +91,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
     updated_tags = []
     if params[:id].present?
 
-      cur_tags = @order.tags.split()
+      cur_tags = @order.tags.split(',')
       
       #temp_app_tag = params[:tags] 
       app_tag = params[:tags]
@@ -107,7 +107,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
        
       new_tags << app_tag
       
-      @order.tags = new_tags.join(", ")     
+      @order.tags = new_tags.join(",")     
 
     @order.save
       respond_to do |format|
