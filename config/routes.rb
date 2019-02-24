@@ -6,10 +6,10 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'dashboard/index'
   
-  post 'orders/create'
+  post 'orders/var_post'
   post 'orders/update'
   patch 'orders/update'
-  patch 'orders/create'
+  patch 'orders/var_post'
   get 'orders/index'
    
   resources :orders

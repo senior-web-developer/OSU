@@ -1,5 +1,5 @@
 class OrdersController < ShopifyApp::AuthenticatedController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :var_post, :update, :destroy]
 
   # GET /orders
   # GET /orders.json
@@ -47,6 +47,38 @@ class OrdersController < ShopifyApp::AuthenticatedController
         format.json { head :no_content }
       end
     end            
+  end
+
+  def var_post
+    cur_tags = []
+    new_tags = [] 
+    updated_tags = []
+    if params[:id].present?
+
+      cur_tags = @order.tags.split()
+      
+      #temp_app_tag = params[:tags] 
+      app_tag = params[:tags]
+      
+    
+      for i in 0..cur_tags.length-1
+     
+        if cur_tags[i][0,8] != "Delayed:"
+        new_tags << cur_tags[i]
+        end #end if
+
+      end #end for
+       
+      new_tags << app_tag
+      
+      @order.tags = new_tags.join(", ")     
+
+    @order.save
+      respond_to do |format|
+        format.html { redirect_to orders_url, notice: 'Order status was successfully updated..'}
+        format.json { head :no_content }      
+      end
+    end
   end
 
   # PATCH/PUT /orders/1
