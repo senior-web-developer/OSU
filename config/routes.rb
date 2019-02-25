@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   get 'dashboard/index'
   
   post 'orders/var_post'
-  post 'orders/update'
-  patch 'orders/update'
+  post 'orders/order_post'
+  patch 'orders/order_post'
   patch 'orders/var_post'
   get 'orders/index'
    

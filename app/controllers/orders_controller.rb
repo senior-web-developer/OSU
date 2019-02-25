@@ -58,8 +58,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
       cur_tags = @order.tags.split(',')
       
       #temp_app_tag = params[:tags] 
-      app_tag = params[:tags]
-      
+      app_tag = params[:tags]      
     
       for i in 0..cur_tags.length-1
      
@@ -83,7 +82,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
 
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
-  def update
+  def order_post
     @order = ShopifyAPI::Order.find(params[:id])
 
     cur_tags = []
@@ -94,8 +93,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
       cur_tags = @order.tags.split(',')
       
       #temp_app_tag = params[:tags] 
-      app_tag = params[:tags]
-      
+      app_tag = params[:tags]      
     
       for i in 0..cur_tags.length-1
      
