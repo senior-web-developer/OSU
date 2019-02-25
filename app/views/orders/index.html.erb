@@ -74,9 +74,13 @@
         <select id="do" name="tags" class='form-control col-md-1'>
           <option disabled="" selected="" value="">Select Status</option>
           <% if order.tags != "" %>
-          <% array = Array.new(order.tags.split(", ")) %> 
-          <option value="<%= array.first %>" selected> <%=array.first %></option>
-          <%end%>          
+          <% array = Array.new(order.tags.split(", ")) %>
+          <% for i in 0.. array.length-1 %>
+          <% if array[i][0, 7] == "Delayed:" %> 
+          <option value="<%= array.at(i) %>" selected> <%= array.at(i) %></option>
+          <%end%>
+          <%end%>
+          <%end%>         
           <option value="Delayed:Fabric_unavailable">Delayed:Fabric unavailable</option> 
           <option value="Delayed:Fabric_ordered_from_mill">Delayed:Fabric ordered from mill</option>
           <option value="Delayed:Awaiting_info_from_customer">Delayed:Awaiting info from customer</option>         
