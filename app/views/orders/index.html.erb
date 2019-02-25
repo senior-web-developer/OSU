@@ -76,7 +76,7 @@
           <% if order.tags != "" %>
           <% array = Array.new(order.tags.split(", ")) %>
           <% for i in 0.. array.length-1 %>
-          <% if array[i][0, 7] == "Delayed:" %> 
+          <% if array[i][0, 8] == "Delayed:" %> 
           <option value="<%= array.at(i) %>" selected> <%= array.at(i) %></option>
           <%end%>
           <%end%>
