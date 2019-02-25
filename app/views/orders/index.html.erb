@@ -76,8 +76,8 @@
           <% if order.tags != "" %>
           <% array = Array.new(order.tags.split(", ")) %>
           <% for i in 0.. array.length-1 %>
-          <% if array[i][0, 7].to_s == "257780750" %> 
-          <option value="<%= array.at(i) %>" selected class="selected_item"> <%= array.at(i) %></option>
+          <% if array[i][0, 7].to_s == "#{item.variant_id}" %> 
+          <option value="<%= array.at(i) %>" selected class="selected_item"> <%= array.at(i) +"#{item.variant_id}" %></option>
           <%end%>
           <%end%>
           <%end%>         
