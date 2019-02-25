@@ -74,10 +74,10 @@
         <select id="do" name="tags" class='form-control col-md-1'>
           <option disabled="" selected="" value="">Select Status</option>
           <% if order.tags != "" %>
-          <% array = Array.new(order.tags.split(", ")) %>
+          <% array = Array.new(order.tags.split(", ").to_s.map(&:to_i)) %>
           <% for i in 0.. array.length-1 %>
-          <% if array[i][0, 7].to_s == "#{item.variant_id}" %> 
-          <option value="<%= array.at(i) %>" selected class="selected_item"> <%= array.at(i) +"#{item.variant_id}" %></option>
+          <% if array[i][0, 7] == "#{item.variant_id}" %> 
+          <option value="<%= array.at(i) %>" selected class="selected_item"> <%= array.at(i) %></option>
           <%end%>
           <%end%>
           <%end%>         
