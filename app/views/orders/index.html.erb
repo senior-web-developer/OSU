@@ -45,13 +45,9 @@
          <select id="do" name="tags" class='form-control col-md-3'> 
           <option disabled="" selected="" value="">Select Status</option> 
           <% if order.tags != "" %>
-          <% cur_tags = Array.new(order.tags.split.map(&:strip)) %>
-          <% for i in 0..cur_tags.length %>           
-            <% if cur_tags[i][0, 7] == "Status:"
-            <option value="<%= cur_tags[i] %>" selected><%= cur_tags[i] %></option> 
-            <%end%> 
-            <%end%>        
-          <%end%>     
+          <% array = Array.new(order.tags.split(", ")) %> 
+          <option value="<%= array.last%>" selected> <%= array.last %></option>
+          <%end%>      
           <option value="Status:Unfulfilled">Status:Unfulfilled</option>  
           <option value="Status:Fulfilled">Status:Fulfilled</option>    
           <option value="Status:Partially_Fulfilled">Status:Partially Fulfilled</option>  
