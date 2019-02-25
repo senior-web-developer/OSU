@@ -61,7 +61,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
       app_tag = params[:tags]      
     
       for i in 0..cur_tags.length-1
-        order.line_items.each do |item| 
+        @order.line_items.each do |item| 
         if cur_tags[i][0,8] != "#{item.variant_id}"
         new_tags << cur_tags[i]
         end #end-if
