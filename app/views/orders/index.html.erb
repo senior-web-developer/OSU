@@ -45,8 +45,12 @@
          <select id="do" name="tags" class='form-control col-md-3'> 
           <option disabled="" selected="" value="">Select Status</option> 
           <% if order.tags != "" %>
-          <% array = Array.new(order.tags.split(", ")) %> 
-          <option value="<%= array.last%>" selected> <%= array.last %></option>
+          <% array = Array.new(order.tags.split(", ")) %>
+          <% for i in 0.. array.length-1 %>
+          <% if array[i][0, 7] == "Status:" %> 
+          <option value="<%= array.at(i) %>" selected> <%= array.at(i) %></option>
+          <%end%>
+          <%end%>
           <%end%>      
           <option value="Status:Unfulfilled">Status:Unfulfilled</option>  
           <option value="Status:Fulfilled">Status:Fulfilled</option>    
