@@ -81,10 +81,10 @@
           <%end%>
           <%end%>
           <%end%>         
-          <option value="VariantID:<%= item.variant_id %>-Delayed:Fabric unavailable">Delayed:Fabric unavailable</option> 
-          <option value="VariantID:<%= item.variant_id %>-Delayed:Fabric ordered from mill">Delayed:Fabric ordered from mill</option>
-          <option value="VariantID:<%= item.variant_id %>-Delayed:Awaiting info from customer">Delayed:Awaiting info from customer</option>         
-          <option value="VariantID:<%= item.variant_id %>-Delayed:Other reason">Delayed:Other reason</option>
+          <option value="<%= item.variant_id %>:Delayed Fabric unavailable">Delayed Fabric unavailable</option> 
+          <option value="<%= item.variant_id %>:Delayed Fabric ordered from mill">Delayed Fabric ordered from mill</option>
+          <option value="<%= item.variant_id %>:Delayed Awaiting info from customer">Delayed Awaiting info from customer</option>         
+          <option value="<%= item.variant_id %>:Delayed Other reason">Delayed Other reason</option>
          </select> 
          <%= f.submit "Save", :class => 'btn btn-default btn-xs'%>
          <%end%>
