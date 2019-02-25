@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'dashboard/index'
   
-  post 'orders/var_post'
   post 'orders/order_post'
   patch 'orders/order_post'
+  post 'orders/var_post'
   patch 'orders/var_post'
   get 'orders/index'
    
