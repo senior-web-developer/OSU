@@ -45,16 +45,10 @@
          <select id="do" name="tags" class='form-control col-md-3'> 
           <option disabled="" selected="" value="">Select Status</option> 
           <% if order.tags != "" %>
-          <% case order.tags %>           
-            <% when 'Status:Unfulfilled' %>
-            <option value="<%= order.tags %>" selected><%= order.tags %></option>
-            <% when 'Status:Fulfilled' %>
-            <option value="<%= order.tags %>" selected><%= order.tags %></option>
-            <% when 'Status:Partially_Fulfilled' %>
-            <option value="<%= order.tags %>" selected><%= order.tags %></option>
-            <% when 'Status:Payment_Recieved'%>
-            <option value="<%= order.tags %>" selected><%= order.tags %></option>            
-           <%end%>
+          <% for i in 0..order.tags.length %>           
+            <% if odrer.tags[i][0, 7] == "Status:"
+            <option value="<%= order.tags.[i] %>" selected><%= order.tags[i] %></option> 
+            <%end%>        
           <%end%>     
           <option value="Status:Unfulfilled">Status:Unfulfilled</option>  
           <option value="Status:Fulfilled">Status:Fulfilled</option>    
