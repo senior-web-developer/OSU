@@ -46,13 +46,13 @@
           <option disabled="" selected="" value="">Select Status</option> 
           <% if order.tags != "" %>
           <% case order.tags %>           
-            <% when 'STATUS:Unfulfilled' %>
+            <% when 'Status:Unfulfilled' %>
             <option value="<%= order.tags %>" selected><%= order.tags %></option>
-            <% when 'STATUS:Fulfilled' %>
+            <% when 'Status:Fulfilled' %>
             <option value="<%= order.tags %>" selected><%= order.tags %></option>
-            <% when 'STATUS:Partially_Fulfilled' %>
+            <% when 'Status:Partially_Fulfilled' %>
             <option value="<%= order.tags %>" selected><%= order.tags %></option>
-            <% when 'STATUS:Payment_Recieved'%>
+            <% when 'Status:Payment_Recieved'%>
             <option value="<%= order.tags %>" selected><%= order.tags %></option>            
            <%end%>
           <%end%>     
