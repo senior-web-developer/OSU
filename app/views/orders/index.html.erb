@@ -104,15 +104,10 @@ $(document).ready(function (){
       var table = $("#row-expand").DataTable({
           "responsive": true,
           "order": [[ 0, "desc" ]],
-            oLanguage: {sLengthMenu: "<select>"+
-            "<option value='100'>100</option>"+
-            "<option value='200'>200</option>"+
-            "<option value='300'>300</option>"+
-            "<option value='-1'>All</option>"+
-            "</select>"},
-            "iDisplayLength": 100,         
-            "bStateSave": true,
-            "fnStateSave": function (oSettings, oData) {
+          "aLengthMenu": [[25, 50, 75, -1], [25, 50, 75, "All"]],
+          "iDisplayLength": 25,
+          "bStateSave": true,
+          "fnStateSave": function (oSettings, oData) {
             localStorage.setItem('offersDataTables', JSON.stringify(oData));
           },
           "fnStateLoad": function (oSettings) {
