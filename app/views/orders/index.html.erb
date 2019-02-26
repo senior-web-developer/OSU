@@ -75,8 +75,8 @@
           <option disabled="" selected="" value="">Select Status</option>
           <% if order.tags != "" %>
           <% array = Array.new(order.tags.split(", ").map(&:strip)) %>
-          <% for i in 0.. array.length-1 %>
-          <% if array[i][0, 13] == "#{item.id}" %> 
+          <% for i in 0..array.length-1 %>
+          <% if array[i][0, 14] == "#{item.id}:" %> 
           <option value="<%= array.at(i) %>" selected class="selected_item"> <%= array.at(i) %></option>
           <%end%>
           <%end%>
