@@ -5,9 +5,9 @@ require_relative 'application'
 Rails.application.initialize!
 
 config.action_mailer.smtp_settings = {
-   user_name:            'suresh@luxire.com',
-   password:             'sureshmca@1986',
-   domain:               'luxire.com',
+   user_name:            '<username>',
+   password:             '<password>',
+   domain:               'example.com',
    address:              'smtp.gmail.com',
    port:                 587,      
    authentication:       'plain',
