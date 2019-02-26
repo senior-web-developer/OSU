@@ -11,21 +11,6 @@ class OrdersController < ShopifyApp::AuthenticatedController
     #@line_items = ShopifyAPI::LineItem.find(:all)
   end
 
-  # GET /orders/1
-  # GET /orders/1.json
-  def show
-    @order = ShopifyAPI::Order.find(params[:id])
-  end
-
-  # GET /orders/new
-  def new
-    @order = ShopifyAPI::Order.new
-  end
-
-  # GET /orders/1/edit
-  def edit
-  end
-
   # POST /orders
   # POST /orders.json
   def create
@@ -52,7 +37,6 @@ class OrdersController < ShopifyApp::AuthenticatedController
   def var_post
     cur_tags = []
     new_tags = [] 
-    updated_tags = []
     if params[:id].present?
 
       cur_tags = @order.tags.split(", ").map(&:strip)
@@ -70,7 +54,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
        
       new_tags << app_tag
       
-      @order.tags = new_tags.join(',')     
+      @order.tags = new_tags.join(', ')     
 
     @order.save
       respond_to do |format|
@@ -87,7 +71,6 @@ class OrdersController < ShopifyApp::AuthenticatedController
 
     cur_tags = []
     new_tags = [] 
-    updated_tags = []
     if params[:id].present?
 
       cur_tags = @order.tags.split(", ").map(&:strip)
@@ -95,17 +78,15 @@ class OrdersController < ShopifyApp::AuthenticatedController
       #temp_app_tag = params[:tags] 
       app_tag = params[:tags]      
     
-      for i in 0..cur_tags.length-1
-     
+      for i in 0..cur_tags.length-1     
         if cur_tags[i][0,7] != "Status:"
         new_tags << cur_tags[i]
-        end #end if
-
-      end #end for
+        end #end-if
+      end #end-for
        
       new_tags << app_tag
       
-      @order.tags = new_tags.join(",")     
+      @order.tags = new_tags.join(", ")     
 
     @order.save
       respond_to do |format|
