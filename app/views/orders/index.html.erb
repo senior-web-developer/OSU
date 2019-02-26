@@ -76,15 +76,15 @@
           <% if order.tags != "" %>
           <% array = Array.new(order.tags.split(", ").to_s.map(&:strip)) %>
           <% for i in 0.. array.length-1 %>
-          <% if array[i][0, 7] == "#{item.variant_id}" %> 
+          <% if array[i][0, 13] == "#{item.id}" %> 
           <option value="<%= array.at(i) %>" selected class="selected_item"> <%= array.at(i) %></option>
           <%end%>
           <%end%>
           <%end%>         
-          <option value="<%= item.variant_id %>:Delayed Fabric unavailable">Delayed Fabric unavailable</option> 
-          <option value="<%= item.variant_id %>:Delayed Fabric ordered from mill">Delayed Fabric ordered from mill</option>
-          <option value="<%= item.variant_id %>:Delayed Awaiting info from customer">Delayed Awaiting info from customer</option>         
-          <option value="<%= item.variant_id %>:Delayed Other reason">Delayed Other reason</option>
+          <option value="<%= item.id %>:Delayed Fabric unavailable">Delayed Fabric unavailable</option> 
+          <option value="<%= item.id %>:Delayed Fabric ordered from mill">Delayed Fabric ordered from mill</option>
+          <option value="<%= item.id %>:Delayed Awaiting info from customer">Delayed Awaiting info from customer</option>         
+          <option value="<%= item.id %>:Delayed Other reason">Delayed Other reason</option>
          </select> 
          <%= f.submit "Save", :class => 'btn btn-default btn-xs'%>
          <%end%>

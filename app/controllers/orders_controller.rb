@@ -55,14 +55,14 @@ class OrdersController < ShopifyApp::AuthenticatedController
     updated_tags = []
     if params[:id].present?
 
-      cur_tags = @order.tags.split(", ").to_s.map(&:strip)
+      cur_tags = @order.tags.split(", ").map(&:strip)
       
       #temp_app_tag = params[:tags] 
       app_tag = params[:tags]      
     
       for i in 0..cur_tags.length-1
         @order.line_items.each do |item| 
-        if cur_tags[i][0,7] != "#{item.variant_id}"
+        if cur_tags[i][0,13] != "#{item.id}"
         new_tags << cur_tags[i]
         end #end-if
       end #end-loop
