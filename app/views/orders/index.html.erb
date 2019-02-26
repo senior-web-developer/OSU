@@ -76,7 +76,7 @@
           <% if order.tags != "" %>
           <% array = Array.new(order.tags.split(", ").map(&:strip)) %>
           <% for i in 0.. array.length-1 %>
-          <% if array[i][0, 14] == "#{item.id}" %> 
+          <% if array[i][0, 14] == "#{item.id}:" %> 
           <option value="<%= array.at(i) %>" class="selected_item" selected> <%= array.at(i) %></option>
           <%end%>
           <%end%>

@@ -46,7 +46,7 @@ class OrdersController < ShopifyApp::AuthenticatedController
     
       for i in 0..cur_tags.length-1
         @order.line_items.each do |item| 
-          if cur_tags[i][0,13] != "#{item.id}"
+          if cur_tags[i][0,14] != "#{item.id}:"
           new_tags << cur_tags[i]
           end #end-if
         end #end-loop
