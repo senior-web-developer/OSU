@@ -52,10 +52,10 @@
           <%end%>
           <%end%>
           <%end%>      
-          <option value="Status:Unfulfilled">Status:Unfulfilled</option>  
-          <option value="Status:Fulfilled">Status:Fulfilled</option>    
-          <option value="Status:Partially Fulfilled">Status:Partially Fulfilled</option>  
-          <option value="Status:Payment Recieved">Status:Payment Recieved</option>         
+          <option value="Status: Unfulfilled">Status: Unfulfilled</option>  
+          <option value="Status: Fulfilled">Status: Fulfilled</option>    
+          <option value="Status: Partially Fulfilled">Status: Partially Fulfilled</option>  
+          <option value="Status: Payment Recieved">Status: Payment Recieved</option>         
          </select>
          <%= f.submit "Save", :class => 'btn btn-primary btn-xs'%> 
          <%end%>
@@ -74,17 +74,17 @@
         <select id="do" name="tags" class='form-control col-md-1'>
           <option disabled="" selected="" value="">Select Status</option>
           <% if order.tags != "" %>
-          <% array = Array.new(order.tags.split(", ").map(&:strip)) %>
-          <% for i in 0.. array.length-1 %>
+          <% array = Array.new(order.tags.split(",").map(&:strip)) %>
+          <% for i in 0..array.length-1 %>
           <% if array[i][0, 14] == "#{item.id}:" %> 
           <option value="<%= array.at(i) %>" class="selected_item" selected> <%= array.at(i) %></option>
           <%end%>
           <%end%>
           <%end%>         
-          <option value="<%= item.id %>:Delayed Fabric unavailable">Delayed Fabric unavailable</option> 
-          <option value="<%= item.id %>:Delayed Fabric ordered">Delayed Fabric ordered from mill</option>
-          <option value="<%= item.id %>:Delayed Awaiting info">Delayed Awaiting info from customer</option>         
-          <option value="<%= item.id %>:Delayed Other reason">Delayed Other reason</option>
+          <option value="<%= item.id %>:Fabric unavailable">Delayed Fabric unavailable</option> 
+          <option value="<%= item.id %>:Fabric ordered from mill">Delayed Fabric ordered from mill</option>
+          <option value="<%= item.id %>:Awaiting info from customer">Delayed Awaiting info from customer</option>         
+          <option value="<%= item.id %>:Other reason">Delayed Other reason</option>
          </select> 
          <%= f.submit "Save", :class => 'btn btn-default btn-xs'%>
          <%end%>
