@@ -104,8 +104,8 @@ $(document).ready(function (){
       var table = $("#row-expand").DataTable({
           "responsive": true,
           "order": [[ 0, "desc" ]],
-          "aLengthMenu": [[25, 50, 75, -1], [25, 50, 75, "All"]],
-          "iDisplayLength": 25,
+          "aLengthMenu": [[50, 100, 150, -1], [50, 100, 150, "All"]],
+          "iDisplayLength": 50,
           "bStateSave": true,
           "fnStateSave": function (oSettings, oData) {
             localStorage.setItem('offersDataTables', JSON.stringify(oData));
